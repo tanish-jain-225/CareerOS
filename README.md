@@ -385,14 +385,14 @@ AuthProvider
 
 ### Route Structure
 
-| Route       | Page                   | Description                               |
-| ----------- | ---------------------- | ----------------------------------------- |
-| `/`         | `app/page.jsx`         | Dashboard — mission command center        |
-| `/jobs`     | `app/jobs/page.jsx`    | Infiltration Hub — job pipeline           |
-| `/comms`    | `app/comms/page.jsx`   | Communication CRM — outreach log          |
-| `/prep`     | `app/prep/page.jsx`    | Tactical Preparation — DSA + STAR + Stack |
+| Route       | Page                    | Description                               |
+| ----------- | ----------------------- | ----------------------------------------- |
+| `/`         | `app/page.jsx`          | Dashboard — mission command center        |
+| `/jobs`     | `app/jobs/page.jsx`     | Infiltration Hub — job pipeline           |
+| `/comms`    | `app/comms/page.jsx`    | Communication CRM — outreach log          |
+| `/prep`     | `app/prep/page.jsx`     | Tactical Preparation — DSA + STAR + Stack |
 | `/identity` | `app/identity/page.jsx` | Identity Partition — profile + projects   |
-| `/vault`    | `app/vault/page.jsx`   | Document Vault — secure file storage      |
+| `/vault`    | `app/vault/page.jsx`    | Document Vault — secure file storage      |
 
 Each route has its own `layout`, `loading`, and `error` files for granular loading and error states.
 
