@@ -1,9 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { 
-  addBusinessDays, 
-  getFollowUpStatus, 
-  getCadenceStatus 
-} from '../utils/dateUtils';
+import { addBusinessDays, getFollowUpStatus, getCadenceStatus } from '../utils/dateUtils';
 
 describe('dateUtils', () => {
   describe('addBusinessDays', () => {
@@ -11,7 +7,7 @@ describe('dateUtils', () => {
       // Friday, May 2, 2026
       const start = new Date('2026-05-02');
       const result = addBusinessDays(start, 3);
-      // Expected: Monday (1), Tuesday (2), Wednesday (3) -> May 7? 
+      // Expected: Monday (1), Tuesday (2), Wednesday (3) -> May 7?
       // Wait, let's check May 2, 2026 day of week.
       // 2026-05-02 is Saturday.
       // 2026-05-01 is Friday.
@@ -50,7 +46,7 @@ describe('dateUtils', () => {
       const status = getFollowUpStatus(job);
       expect(status.label).toBe('Follow-up required');
       expect(status.level).toBe('urgent');
-      
+
       vi.useRealTimers();
     });
   });

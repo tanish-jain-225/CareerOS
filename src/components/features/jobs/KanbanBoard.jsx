@@ -11,26 +11,24 @@ import {
   useSensors,
   defaultDropAnimationSideEffects,
 } from '@dnd-kit/core';
-import {
-  sortableKeyboardCoordinates,
-} from '@dnd-kit/sortable';
+import { sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import KanbanColumn from './KanbanColumn';
 import JobCard from './JobCard';
 
 const COLUMNS = [
-  { id: 'sourced',     name: 'Sourced',       color: 'indigo' },
-  { id: 'shortlisted', name: 'Shortlisted',   color: 'blue' },
-  { id: 'applied',     name: 'Applied',       color: 'emerald' },
-  { id: 'followed_up', name: 'Followed-up',   color: 'teal' },
-  { id: 'oa',          name: 'OA Invited',    color: 'amber' },
-  { id: 'interview',   name: 'Interview',     color: 'rose' },
-  { id: 'offer',       name: 'Offer / Close', color: 'emerald' },
-  { id: 'rejected',    name: 'Rejected',      color: 'rose' },
+  { id: 'sourced', name: 'Sourced', color: 'indigo' },
+  { id: 'shortlisted', name: 'Shortlisted', color: 'blue' },
+  { id: 'applied', name: 'Applied', color: 'emerald' },
+  { id: 'followed_up', name: 'Followed-up', color: 'teal' },
+  { id: 'oa', name: 'OA Invited', color: 'amber' },
+  { id: 'interview', name: 'Interview', color: 'rose' },
+  { id: 'offer', name: 'Offer / Close', color: 'emerald' },
+  { id: 'rejected', name: 'Rejected', color: 'rose' },
 ];
 
 /**
  * KanbanBoard component for high-fidelity job pipeline management.
- * 
+ *
  * @param {Object} props
  * @param {Array} props.jobs - Array of job objects to display.
  * @param {Function} props.onUpdate - Callback to update a job's data/status.
@@ -39,7 +37,7 @@ const COLUMNS = [
  */
 export default function KanbanBoard({ jobs, onUpdate, onDelete, onEdit }) {
   const [activeId, setActiveId] = useState(null);
-  
+
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: {
@@ -74,8 +72,8 @@ export default function KanbanBoard({ jobs, onUpdate, onDelete, onEdit }) {
 
     // Dropping a card over another card
     if (isActiveACard && isOverACard) {
-      const activeJob = jobs.find(j => j.id === activeId);
-      const overJob = jobs.find(j => j.id === overId);
+      const activeJob = jobs.find((j) => j.id === activeId);
+      const overJob = jobs.find((j) => j.id === overId);
 
       if (activeJob && overJob && activeJob.status !== overJob.status) {
         onUpdate(activeId, { status: overJob.status });
@@ -84,7 +82,7 @@ export default function KanbanBoard({ jobs, onUpdate, onDelete, onEdit }) {
 
     // Dropping a card over a column
     if (isActiveACard && isOverAColumn) {
-      const activeJob = jobs.find(j => j.id === activeId);
+      const activeJob = jobs.find((j) => j.id === activeId);
       if (activeJob && activeJob.status !== overId) {
         onUpdate(activeId, { status: overId });
       }
@@ -113,7 +111,7 @@ export default function KanbanBoard({ jobs, onUpdate, onDelete, onEdit }) {
       onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
     >
-      <div className="flex gap-6 overflow-x-auto pb-8 scrollbar-hide min-h-[600px]">
+      <div className="scrollbar-hide flex min-h-[600px] gap-6 overflow-x-auto pb-8">
         {COLUMNS.map((col) => (
           <KanbanColumn
             key={col.id}
@@ -130,13 +128,8 @@ export default function KanbanBoard({ jobs, onUpdate, onDelete, onEdit }) {
 
       <DragOverlay dropAnimation={dropAnimation}>
         {activeId && activeJob ? (
-          <div className="w-[320px] opacity-90 scale-105 cursor-grabbing">
-            <JobCard 
-              job={activeJob} 
-              onUpdate={() => {}} 
-              onDelete={() => {}} 
-              onEdit={() => {}} 
-            />
+          <div className="w-[320px] scale-105 cursor-grabbing opacity-90">
+            <JobCard job={activeJob} onUpdate={() => {}} onDelete={() => {}} onEdit={() => {}} />
           </div>
         ) : null}
       </DragOverlay>

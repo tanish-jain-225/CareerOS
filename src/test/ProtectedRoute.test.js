@@ -25,11 +25,7 @@ describe('ProtectedRoute', () => {
   it('renders loader while auth is resolving', () => {
     authState = { user: null, loading: true };
     render(
-      React.createElement(
-        ProtectedRoute,
-        null,
-        React.createElement('div', null, 'Secure Content')
-      )
+      React.createElement(ProtectedRoute, null, React.createElement('div', null, 'Secure Content'))
     );
     expect(screen.getByText('Loading View')).toBeInTheDocument();
   });
@@ -37,11 +33,7 @@ describe('ProtectedRoute', () => {
   it('renders auth when no user', () => {
     authState = { user: null, loading: false };
     render(
-      React.createElement(
-        ProtectedRoute,
-        null,
-        React.createElement('div', null, 'Secure Content')
-      )
+      React.createElement(ProtectedRoute, null, React.createElement('div', null, 'Secure Content'))
     );
     expect(screen.getByText('Auth View')).toBeInTheDocument();
   });
@@ -49,11 +41,7 @@ describe('ProtectedRoute', () => {
   it('renders children for authenticated user', () => {
     authState = { user: { uid: 'abc' }, loading: false };
     render(
-      React.createElement(
-        ProtectedRoute,
-        null,
-        React.createElement('div', null, 'Secure Content')
-      )
+      React.createElement(ProtectedRoute, null, React.createElement('div', null, 'Secure Content'))
     );
     expect(screen.getByText('Secure Content')).toBeInTheDocument();
   });

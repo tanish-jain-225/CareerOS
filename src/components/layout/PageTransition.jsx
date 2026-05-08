@@ -3,8 +3,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
-
-
 export default function PageTransition({ children }) {
   const pathname = usePathname();
 
@@ -19,7 +17,7 @@ export default function PageTransition({ children }) {
           duration: 0.22,
           ease: [0.22, 1, 0.36, 1],
         }}
-        className="w-full min-h-full"
+        className="min-h-full w-full"
       >
         {children}
       </motion.div>

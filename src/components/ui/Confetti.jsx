@@ -38,7 +38,7 @@ export default function Confetti({ active = false }) {
     let frame = 0;
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
+      particles.forEach((p) => {
         p.x += p.vx;
         p.y += p.vy;
         p.vy += 0.35; // gravity
@@ -80,7 +80,7 @@ export default function Confetti({ active = false }) {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-[9999]"
+      className="pointer-events-none fixed inset-0 z-[9999]"
       aria-hidden="true"
     />
   );

@@ -24,7 +24,8 @@ const outfit = Outfit({
 
 export const metadata = {
   title: 'CareerOS | Professional Job Pipeline Management',
-  description: 'Enterprise-grade job tracking, CRM, preparation modules, and portfolio management for ambitious professionals.',
+  description:
+    'Enterprise-grade job tracking, CRM, preparation modules, and portfolio management for ambitious professionals.',
   keywords: ['job tracker', 'career management', 'CRM', 'job pipeline', 'interview prep'],
   authors: [{ name: 'CareerOS' }],
   icons: {
@@ -33,7 +34,8 @@ export const metadata = {
   },
   openGraph: {
     title: 'CareerOS | Professional Job Pipeline Management',
-    description: 'Enterprise-grade job tracking, CRM, preparation modules, and portfolio management.',
+    description:
+      'Enterprise-grade job tracking, CRM, preparation modules, and portfolio management.',
     type: 'website',
     locale: 'en_US',
     siteName: 'CareerOS',
@@ -41,7 +43,8 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'CareerOS | Professional Job Pipeline Management',
-    description: 'Enterprise-grade job tracking, CRM, preparation modules, and portfolio management.',
+    description:
+      'Enterprise-grade job tracking, CRM, preparation modules, and portfolio management.',
   },
   robots: {
     index: true,
@@ -58,7 +61,7 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable}`}>
-      <body className="antialiased font-sans">
+      <body className="font-sans antialiased">
         <AuthProvider>
           <ToastProvider>
             <ModalProvider>
@@ -68,9 +71,7 @@ export default function RootLayout({ children }) {
                     <Sidebar />
                     <main className="content-scroll">
                       <div className="page-wrap pt-20 md:pt-10">
-                        <PageTransition>
-                          {children}
-                        </PageTransition>
+                        <PageTransition>{children}</PageTransition>
                       </div>
                     </main>
                   </div>

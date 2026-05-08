@@ -15,30 +15,32 @@ const DIFF_COLORS = {
  */
 export default function DSATaskRow({ task, onUpdate, onDelete }) {
   const diff = DIFF_COLORS[task.difficulty] || DIFF_COLORS.medium;
-  
+
   return (
-    <motion.div 
+    <motion.div
       layout
-      className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.015] border border-white/5 group hover:bg-white/[0.03] transition-all"
+      className="group flex items-center gap-4 rounded-2xl border border-white/5 bg-white/[0.015] p-4 transition-all hover:bg-white/[0.03]"
     >
       <button
         onClick={() => onUpdate(task.id, { completed: !task.completed })}
-        className={`w-6 h-6 rounded-lg border transition-all flex items-center justify-center flex-shrink-0 ${
-          task.completed ? 'bg-emerald-500 border-emerald-500' : 'border-white/10 bg-white/5 hover:border-emerald-500/30'
+        className={`flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg border transition-all ${
+          task.completed
+            ? 'border-emerald-500 bg-emerald-500'
+            : 'border-white/10 bg-white/5 hover:border-emerald-500/30'
         }`}
         data-testid={`dsa-toggle-${task.id}`}
         data-completed={task.completed ? 'true' : 'false'}
       >
         {task.completed && <CheckCircle2 size={12} className="text-white" />}
       </button>
-      
-      <div className="flex-1 min-w-0">
+
+      <div className="min-w-0 flex-1">
         <input
-          className={`bg-transparent text-xs font-bold w-full outline-none transition-colors ${
+          className={`w-full bg-transparent text-xs font-bold transition-colors outline-none ${
             task.completed ? 'text-white/20 line-through' : 'text-white/70 group-hover:text-white'
           }`}
           defaultValue={task.title}
-          onBlur={e => onUpdate(task.id, { title: e.target.value })}
+          onBlur={(e) => onUpdate(task.id, { title: e.target.value })}
           placeholder="Problem Title..."
           data-testid={`dsa-title-${task.id}`}
         />
@@ -51,11 +53,14 @@ export default function DSATaskRow({ task, onUpdate, onDelete }) {
             const cur = diffs.indexOf(task.difficulty || 'medium');
             onUpdate(task.id, { difficulty: diffs[(cur + 1) % 3] });
           }}
-          className={`text-[8px] font-black uppercase tracking-widest px-2 py-1 rounded-lg border transition-all ${diff.bg} ${diff.text}`}
+          className={`rounded-lg border px-2 py-1 text-[8px] font-black tracking-widest uppercase transition-all ${diff.bg} ${diff.text}`}
         >
           {diff.label}
         </button>
-        <button onClick={() => onDelete(task.id)} className="p-2 text-white/10 hover:text-rose-400 transition-all">
+        <button
+          onClick={() => onDelete(task.id)}
+          className="p-2 text-white/10 transition-all hover:text-rose-400"
+        >
           <Trash2 size={14} />
         </button>
       </div>

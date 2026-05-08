@@ -12,28 +12,37 @@ import { motion } from 'framer-motion';
  * @param {React.ElementType} icon - Lucide icon component.
  * @param {number} delay - Animation delay factor.
  */
-export default function StatCard({ label, value, hint, tone = 'text-indigo-400', icon: Icon, delay = 0 }) {
+export default function StatCard({
+  label,
+  value,
+  hint,
+  tone = 'text-indigo-400',
+  icon: Icon,
+  delay = 0,
+}) {
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: delay * 0.1 }}
       className="panel glass-card-hover group relative overflow-hidden"
     >
-      <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+      <div className="absolute top-0 right-0 p-4 opacity-5 transition-opacity group-hover:opacity-10">
         <Icon size={80} strokeWidth={1} />
       </div>
       <div className="relative z-10">
-        <div className="flex items-center gap-2 mb-4">
-          <div className={`p-2 rounded-lg bg-white/[0.03] border border-white/5 ${tone}`}>
+        <div className="mb-4 flex items-center gap-2">
+          <div className={`rounded-lg border border-white/5 bg-white/[0.03] p-2 ${tone}`}>
             <Icon size={16} />
           </div>
-          <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/30">{label}</p>
+          <p className="text-[10px] font-black tracking-[0.2em] text-white/30 uppercase">{label}</p>
         </div>
         <div className="flex items-end gap-2">
-          <p className={`text-4xl font-black font-outfit tracking-tighter ${tone}`}>{value}</p>
+          <p className={`font-outfit text-4xl font-black tracking-tighter ${tone}`}>{value}</p>
         </div>
-        <p className="mt-4 text-[10px] font-bold text-white/20 uppercase tracking-widest leading-relaxed">{hint}</p>
+        <p className="mt-4 text-[10px] leading-relaxed font-bold tracking-widest text-white/20 uppercase">
+          {hint}
+        </p>
       </div>
     </motion.div>
   );

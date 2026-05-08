@@ -6,6 +6,9 @@
  * Formats a number of bytes into a human-readable string.
  * @param {number} bytes - The number of bytes to format.
  * @returns {string} Formatted string (e.g. "1.5 MB").
+ *
+ * @example
+ * formatBytes(1024); // returns "1.0 KB"
  */
 export function formatBytes(bytes) {
   if (bytes < 1024) return `${bytes} B`;
@@ -18,6 +21,9 @@ export function formatBytes(bytes) {
  * @param {Date|string} date - Start date.
  * @param {number} days - Number of business days to add.
  * @returns {Date} Resulting date.
+ *
+ * @example
+ * addBusinessDays('2026-05-08', 3); // skips Sat/Sun
  */
 export function addBusinessDays(date, days) {
   const d = new Date(date);
@@ -51,12 +57,20 @@ export function getFollowUpStatus(job) {
   const now = new Date();
   const firstFollowUp = addBusinessDays(applied, 3);
   const secondFollowUp = addBusinessDays(firstFollowUp, 7);
-  
+
   if (now >= secondFollowUp) {
-    return { level: 'critical', label: '2nd follow-up overdue', days: getDaysDifference(secondFollowUp, now) };
+    return {
+      level: 'critical',
+      label: '2nd follow-up overdue',
+      days: getDaysDifference(secondFollowUp, now),
+    };
   }
   if (now >= firstFollowUp) {
-    return { level: 'urgent', label: 'Follow-up required', days: getDaysDifference(firstFollowUp, now) };
+    return {
+      level: 'urgent',
+      label: 'Follow-up required',
+      days: getDaysDifference(firstFollowUp, now),
+    };
   }
   return null;
 }
@@ -67,13 +81,47 @@ export function getFollowUpStatus(job) {
  * @returns {Object} Cadence status and next suggested action.
  */
 export function getCadenceStatus(createdAt) {
-  if (!createdAt) return { label: 'Day 0 — Init', nextAction: 'Send Intro', overdue: false, daysIn: 0, progress: 0 };
+  if (!createdAt)
+    return {
+      label: 'Day 0 — Init',
+      nextAction: 'Send Intro',
+      overdue: false,
+      daysIn: 0,
+      progress: 0,
+    };
   const days = getDaysDifference(createdAt);
-  
-  if (days < 3) return { label: `Day ${days}`, nextAction: `Follow-up in ${3 - days}d`, overdue: false, daysIn: days, progress: (days / 17) * 100 };
-  if (days < 10) return { label: `Day ${days} — F1`, nextAction: `Send Follow-up`, overdue: days > 5, daysIn: days, progress: (days / 17) * 100 };
-  if (days < 17) return { label: `Day ${days} — F2`, nextAction: 'Final Outreach', overdue: days > 12, daysIn: days, progress: (days / 17) * 100 };
-  return { label: `Day ${days} — Closed`, nextAction: 'Archive Node', overdue: true, daysIn: days, progress: 100 };
+
+  if (days < 3)
+    return {
+      label: `Day ${days}`,
+      nextAction: `Follow-up in ${3 - days}d`,
+      overdue: false,
+      daysIn: days,
+      progress: (days / 17) * 100,
+    };
+  if (days < 10)
+    return {
+      label: `Day ${days} — F1`,
+      nextAction: `Send Follow-up`,
+      overdue: days > 5,
+      daysIn: days,
+      progress: (days / 17) * 100,
+    };
+  if (days < 17)
+    return {
+      label: `Day ${days} — F2`,
+      nextAction: 'Final Outreach',
+      overdue: days > 12,
+      daysIn: days,
+      progress: (days / 17) * 100,
+    };
+  return {
+    label: `Day ${days} — Closed`,
+    nextAction: 'Archive Node',
+    overdue: true,
+    daysIn: days,
+    progress: 100,
+  };
 }
 
 /**
@@ -84,7 +132,20 @@ export function getCadenceStatus(createdAt) {
 export function formatDate(dateStr) {
   if (!dateStr) return 'Unknown';
   const d = new Date(dateStr);
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
   const now = new Date();
   if (d.getFullYear() !== now.getFullYear()) {
     return `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
@@ -102,5 +163,5 @@ export function getWeekNumber(d = new Date()) {
   const dayNum = date.getUTCDay() || 7;
   date.setUTCDate(date.getUTCDate() + 4 - dayNum);
   const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-  return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+  return Math.ceil(((date - yearStart) / 86400000 + 1) / 7);
 }

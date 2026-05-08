@@ -3,7 +3,7 @@
 import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import LogoLoader from './LogoLoader';
+import LogoLoader from '@/components/ui/LogoLoader';
 
 /**
  * Higher-Order Component/Wrapper to protect routes.
@@ -27,7 +27,7 @@ export default function AuthGate({ children }) {
 
   if (loading) {
     return (
-      <div className="flex-1 flex items-center justify-center min-h-[70vh]">
+      <div className="flex min-h-[70vh] flex-1 items-center justify-center">
         <LogoLoader size="lg" />
       </div>
     );

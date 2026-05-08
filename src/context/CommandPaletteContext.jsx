@@ -10,7 +10,7 @@ export function CommandPaletteProvider({ children }) {
 
   const open = useCallback(() => setIsOpen(true), []);
   const close = useCallback(() => setIsOpen(false), []);
-  const toggle = useCallback(() => setIsOpen(v => !v), []);
+  const toggle = useCallback(() => setIsOpen((v) => !v), []);
 
   useEffect(() => {
     const handler = (e) => {

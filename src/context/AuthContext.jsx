@@ -8,7 +8,7 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  updateProfile
+  updateProfile,
 } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import LogoLoader from '@/components/ui/LogoLoader';
@@ -30,7 +30,9 @@ export const AuthProvider = ({ children }) => {
           uid: firebaseUser.uid,
           email: firebaseUser.email,
           displayName: firebaseUser.displayName || firebaseUser.email?.split('@')[0],
-          photoURL: firebaseUser.photoURL || `https://api.dicebear.com/7.x/initials/svg?seed=${firebaseUser.email}`,
+          photoURL:
+            firebaseUser.photoURL ||
+            `https://api.dicebear.com/7.x/initials/svg?seed=${firebaseUser.email}`,
         });
       } else {
         setUser(null);
@@ -80,11 +82,15 @@ export const AuthProvider = ({ children }) => {
   // Show branded loading screen instead of blank/null during auth resolution
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#050505] flex flex-col items-center justify-center gap-8">
+      <div className="flex min-h-screen flex-col items-center justify-center gap-8 bg-[#050505]">
         <LogoLoader size="lg" />
-        <div className="text-center space-y-2">
-          <p className="text-[10px] font-black text-white/30 uppercase tracking-[0.4em]">CareerOS</p>
-          <p className="text-white/10 text-[9px] uppercase font-bold tracking-[0.3em]">Initializing Secure Core...</p>
+        <div className="space-y-2 text-center">
+          <p className="text-[10px] font-black tracking-[0.4em] text-white/30 uppercase">
+            CareerOS
+          </p>
+          <p className="text-[9px] font-bold tracking-[0.3em] text-white/10 uppercase">
+            Initializing Secure Core...
+          </p>
         </div>
       </div>
     );

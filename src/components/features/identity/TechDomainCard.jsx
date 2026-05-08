@@ -13,59 +13,73 @@ export default function TechDomainCard({ topic, onUpdate, onDelete }) {
   const debouncedUpdate = useDebouncedCallback((val) => onUpdate(topic.id, { mastery: val }), 500);
 
   return (
-    <motion.div 
+    <motion.div
       layout
-      className="panel group border-white/5 hover:border-indigo-500/20 bg-white/[0.01]"
+      className="panel group border-white/5 bg-white/[0.01] hover:border-indigo-500/20"
     >
-      <div className="flex items-center justify-between mb-6">
+      <div className="mb-6 flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400">
+          <div className="rounded-xl bg-indigo-500/10 p-2.5 text-indigo-400">
             <Code2 size={16} />
           </div>
           <div>
             <input
-              className="bg-transparent font-black font-outfit text-white outline-none w-full focus:text-indigo-400 transition-colors text-sm"
+              className="font-outfit w-full bg-transparent text-sm font-black text-white transition-colors outline-none focus:text-indigo-400"
               defaultValue={topic.topic}
-              onBlur={e => onUpdate(topic.id, { topic: e.target.value })}
+              onBlur={(e) => onUpdate(topic.id, { topic: e.target.value })}
               placeholder="Domain Name..."
             />
-            <p className="text-[10px] font-bold text-white/20 uppercase tracking-widest mt-0.5">Technical Domain</p>
+            <p className="mt-0.5 text-[10px] font-bold tracking-widest text-white/20 uppercase">
+              Technical Domain
+            </p>
           </div>
         </div>
-        <button onClick={() => onDelete(topic.id)} className="p-2 text-white/10 hover:text-rose-400 transition-all">
+        <button
+          onClick={() => onDelete(topic.id)}
+          className="p-2 text-white/10 transition-all hover:text-rose-400"
+        >
           <Trash2 size={14} />
         </button>
       </div>
 
       <div className="space-y-4">
-        <div className="flex justify-between items-end">
-          <span className="text-[10px] font-black font-outfit text-indigo-400 uppercase tracking-tighter">Mastery Level</span>
-          <span className="text-xl font-black font-outfit text-white">{mastery}%</span>
+        <div className="flex items-end justify-between">
+          <span className="font-outfit text-[10px] font-black tracking-tighter text-indigo-400 uppercase">
+            Mastery Level
+          </span>
+          <span className="font-outfit text-xl font-black text-white">{mastery}%</span>
         </div>
-        <div className="relative h-2 bg-white/5 rounded-full overflow-hidden">
-          <motion.div 
+        <div className="relative h-2 overflow-hidden rounded-full bg-white/5">
+          <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${mastery}%` }}
-            className="h-full bg-indigo-500 shadow-indigo"
+            className="shadow-indigo h-full bg-indigo-500"
           />
         </div>
-        <div className="flex justify-between items-center">
-          <p className="text-[8px] font-bold text-white/10 uppercase tracking-widest">Mastery Stability</p>
+        <div className="flex items-center justify-between">
+          <p className="text-[8px] font-bold tracking-widest text-white/10 uppercase">
+            Mastery Stability
+          </p>
           <div className="flex gap-1">
-            {[1, 2, 3, 4, 5].map(i => (
-              <div key={i} className={`w-1 h-1 rounded-full ${i <= (mastery / 20) ? 'bg-indigo-500 shadow-indigo' : 'bg-white/5'}`} />
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div
+                key={i}
+                className={`h-1 w-1 rounded-full ${i <= mastery / 20 ? 'shadow-indigo bg-indigo-500' : 'bg-white/5'}`}
+              />
             ))}
           </div>
         </div>
         <input
-          type="range" min="0" max="100"
+          type="range"
+          min="0"
+          max="100"
           value={mastery}
-          onChange={e => {
+          onChange={(e) => {
             const v = parseInt(e.target.value);
             setMastery(v);
             debouncedUpdate(v);
           }}
-          className="w-full accent-indigo-500 h-1 cursor-pointer opacity-20 hover:opacity-100 transition-opacity"
+          className="h-1 w-full cursor-pointer accent-indigo-500 opacity-20 transition-opacity hover:opacity-100"
         />
       </div>
     </motion.div>

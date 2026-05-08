@@ -16,17 +16,16 @@ export function DataProvider({ children }) {
   const outreach = useCollection('outreach');
   const profile = useUserDoc('profiles', PROFILE_DEFAULT);
 
-  const value = React.useMemo(() => ({
-    jobs,
-    outreach,
-    profile
-  }), [jobs, outreach, profile]);
-
-  return (
-    <DataContext.Provider value={value}>
-      {children}
-    </DataContext.Provider>
+  const value = React.useMemo(
+    () => ({
+      jobs,
+      outreach,
+      profile,
+    }),
+    [jobs, outreach, profile]
   );
+
+  return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }
 
 export const useData = () => useContext(DataContext);

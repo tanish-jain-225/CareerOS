@@ -27,6 +27,18 @@ const ITEMS = [
   { href: '/vault', label: 'Vault', icon: HardDrive },
 ];
 
+/**
+ * Sidebar - Primary desktop navigation and identity status center.
+ *
+ * Features:
+ * - Persistent navigation with spring-animated active states.
+ * - Global search trigger (Ctrl+K integration).
+ * - Real-time activity counts (Jobs/Comms) via DataContext.
+ * - Profile synchronization with Identity Partition.
+ * - Tactical session termination (Sign Out).
+ *
+ * @returns {JSX.Element} The rendered sidebar interface.
+ */
 export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
@@ -34,10 +46,14 @@ export default function Sidebar() {
   const { open } = useCommandPalette();
 
   // Shared data from DataContext
-  const { jobs: { data: jobs }, outreach: { data: outreach }, profile: { data: profile } } = useData();
+  const {
+    jobs: { data: jobs },
+    outreach: { data: outreach },
+    profile: { data: profile },
+  } = useData();
 
   const counts = {
-    jobs: jobs.filter(j => !['offer', 'rejected'].includes(j.status)).length,
+    jobs: jobs.filter((j) => !['offer', 'rejected'].includes(j.status)).length,
     comms: outreach.length,
   };
 
@@ -46,62 +62,73 @@ export default function Sidebar() {
   const title = pf.title || 'Mission Command';
 
   return (
-    <aside className="hidden md:flex md:w-[280px] md:flex-col h-screen sticky top-0 bg-[#05070a] border-r border-white/[0.03] p-4">
+    <aside className="sticky top-0 hidden h-screen border-r border-white/[0.03] bg-[#05070a] p-4 md:flex md:w-[280px] md:flex-col">
       {/* Branding Section - Fixed at top */}
-      <div className="flex-shrink-0 flex items-center gap-3 mb-8 px-2">
-        <div className="w-10 h-10 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center shadow-2xl overflow-hidden relative">
-          <Image src="/logo.png" alt="CareerOS Logo" width={28} height={28} className="object-contain" />
+      <div className="mb-8 flex flex-shrink-0 items-center gap-3 px-2">
+        <div className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-white/[0.03] shadow-2xl">
+          <Image
+            src="/logo.png"
+            alt="CareerOS Logo"
+            width={28}
+            height={28}
+            className="object-contain"
+          />
         </div>
-        <span className="text-lg font-black font-outfit tracking-tighter text-white">Career<span className="text-indigo-500">OS</span></span>
+        <span className="font-outfit text-lg font-black tracking-tighter text-white">
+          Career<span className="text-indigo-500">OS</span>
+        </span>
       </div>
 
       <button
         onClick={open}
-        className="flex-shrink-0 w-full flex items-center gap-2 bg-white/[0.02] border border-white/[0.05] rounded-2xl p-4 text-white/30 hover:text-white/60 hover:bg-white/[0.04] transition-all mb-6 group"
+        className="group mb-6 flex w-full flex-shrink-0 items-center gap-2 rounded-2xl border border-white/[0.05] bg-white/[0.02] p-4 text-white/30 transition-all hover:bg-white/[0.04] hover:text-white/60"
       >
-        <Search size={16} className="group-hover:scale-110 transition-transform" />
-        <span className="text-[10px] font-black uppercase tracking-widest flex-1 text-left">Global Search</span>
-        <kbd className="hidden lg:inline-flex items-center gap-1 px-2 py-1 bg-white/5 rounded-lg border border-white/10 text-[8px] font-black text-white/30 uppercase tracking-tighter">
+        <Search size={16} className="transition-transform group-hover:scale-110" />
+        <span className="flex-1 text-left text-[10px] font-black tracking-widest uppercase">
+          Global Search
+        </span>
+        <kbd className="hidden items-center gap-1 rounded-lg border border-white/10 bg-white/5 px-2 py-1 text-[8px] font-black tracking-tighter text-white/30 uppercase lg:inline-flex">
           Ctrl+K
         </kbd>
       </button>
 
-
       {/* Navigation Section - Scrollable if height is restricted */}
-      <nav className="flex-1 space-y-1.5 overflow-y-auto scrollbar-hide pr-2 -mr-2">
+      <nav className="scrollbar-hide -mr-2 flex-1 space-y-1.5 overflow-y-auto pr-2">
         {ITEMS.map((item) => {
           const active = pathname === item.href;
           const count = item.countKey ? counts[item.countKey] : null;
           return (
-            <Link key={item.href} href={item.href} className="block relative group">
+            <Link key={item.href} href={item.href} className="group relative block">
               {active && (
                 <motion.div
                   layoutId="sidebar-active"
-                  className="absolute inset-0 bg-indigo-500/10 rounded-2xl border border-indigo-500/20 shadow-indigo"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  className="shadow-indigo absolute inset-0 rounded-2xl border border-indigo-500/20 bg-indigo-500/10"
+                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                 />
               )}
               <span
-                className={`relative flex items-center gap-4 px-4 py-4 rounded-2xl transition-all ${
-                  active
-                    ? 'text-white translate-x-1'
-                    : 'text-white/20 hover:text-white/60'
+                className={`relative flex items-center gap-4 rounded-2xl px-4 py-4 transition-all ${
+                  active ? 'translate-x-1 text-white' : 'text-white/20 hover:text-white/60'
                 }`}
               >
-                <div className={`transition-all duration-300 ${active ? 'text-indigo-400' : 'group-hover:scale-110'}`}>
+                <div
+                  className={`transition-all duration-300 ${active ? 'text-indigo-400' : 'group-hover:scale-110'}`}
+                >
                   <item.icon size={18} strokeWidth={active ? 2.5 : 2} />
                 </div>
-                <span className="text-[10px] font-black uppercase tracking-[0.2em]">{item.label}</span>
+                <span className="text-[10px] font-black tracking-[0.2em] uppercase">
+                  {item.label}
+                </span>
                 {count > 0 && (
-                  <span className="ml-auto text-[8px] font-black bg-white/5 border border-white/10 text-white/40 px-2 py-0.5 rounded-full leading-none">
+                  <span className="ml-auto rounded-full border border-white/10 bg-white/5 px-2 py-0.5 text-[8px] leading-none font-black text-white/40">
                     {count}
                   </span>
                 )}
                 {active && !count && (
-                  <motion.div 
+                  <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="ml-auto w-1 h-4 bg-indigo-500 rounded-full shadow-indigo"
+                    className="shadow-indigo ml-auto h-4 w-1 rounded-full bg-indigo-500"
                   />
                 )}
               </span>
@@ -110,33 +137,44 @@ export default function Sidebar() {
         })}
       </nav>
 
-
-
       {/* Profile Section - Fixed at bottom */}
-      <div className="flex-shrink-0 mt-auto pt-4 border-t border-white/[0.03] space-y-4">
-        <div className="flex items-center gap-4 px-2 group cursor-pointer" onClick={() => router.push('/identity')}>
+      <div className="mt-auto flex-shrink-0 space-y-4 border-t border-white/[0.03] pt-4">
+        <div
+          className="group flex cursor-pointer items-center gap-4 px-2"
+          onClick={() => router.push('/identity')}
+        >
           <div className="relative">
-            <div className="w-11 h-11 rounded-2xl bg-white/[0.03] border border-white/[0.05] flex items-center justify-center overflow-hidden group-hover:border-indigo-500/30 transition-all relative">
+            <div className="relative flex h-11 w-11 items-center justify-center overflow-hidden rounded-2xl border border-white/[0.05] bg-white/[0.03] transition-all group-hover:border-indigo-500/30">
               {user?.photoURL ? (
-                <Image src={user.photoURL} alt={name} width={44} height={44} className="object-cover" />
+                <Image
+                  src={user.photoURL}
+                  alt={name}
+                  width={44}
+                  height={44}
+                  className="object-cover"
+                />
               ) : (
                 <UserCircle size={24} className="text-white/20" />
               )}
             </div>
-            <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-[#05070a] rounded-full flex items-center justify-center">
-              <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
+            <div className="absolute -right-1 -bottom-1 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-[#05070a]">
+              <div className="h-2 w-2 animate-pulse rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]" />
             </div>
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="truncate text-[10px] font-black text-white uppercase tracking-wider group-hover:text-indigo-400 transition-colors">{name}</p>
-            <p className="truncate text-[8px] font-bold text-white/20 uppercase tracking-widest mt-0.5">{title}</p>
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-[10px] font-black tracking-wider text-white uppercase transition-colors group-hover:text-indigo-400">
+              {name}
+            </p>
+            <p className="mt-0.5 truncate text-[8px] font-bold tracking-widest text-white/20 uppercase">
+              {title}
+            </p>
           </div>
         </div>
         {user && (
-          <button 
-            onClick={logout} 
+          <button
+            onClick={logout}
             aria-label="Terminate Session"
-            className="w-full flex items-center justify-center gap-2 bg-rose-500/5 border border-rose-500/10 text-rose-500/50 rounded-2xl py-4 text-[10px] font-black uppercase tracking-widest hover:bg-rose-500/10 hover:text-rose-400 transition-all active:scale-[0.98]"
+            className="flex w-full items-center justify-center gap-2 rounded-2xl border border-rose-500/10 bg-rose-500/5 py-4 text-[10px] font-black tracking-widest text-rose-500/50 uppercase transition-all hover:bg-rose-500/10 hover:text-rose-400 active:scale-[0.98]"
           >
             <LogOut size={14} />
             Sign Out

@@ -9,9 +9,12 @@ import React from 'react';
 export function getFileIcon(type) {
   if (type?.includes('pdf')) return <FileText size={20} />;
   if (type?.includes('image')) return <FileImage size={20} />;
-  if (type?.includes('spreadsheet') || type?.includes('excel') || type?.includes('csv')) return <FileSpreadsheet size={20} />;
-  if (type?.includes('zip') || type?.includes('rar') || type?.includes('archive')) return <FileArchive size={20} />;
-  if (type?.includes('text') || type?.includes('doc') || type?.includes('code')) return <FileCode size={20} />;
+  if (type?.includes('spreadsheet') || type?.includes('excel') || type?.includes('csv'))
+    return <FileSpreadsheet size={20} />;
+  if (type?.includes('zip') || type?.includes('rar') || type?.includes('archive'))
+    return <FileArchive size={20} />;
+  if (type?.includes('text') || type?.includes('doc') || type?.includes('code'))
+    return <FileCode size={20} />;
   return <FileText size={20} />;
 }
 
@@ -31,9 +34,9 @@ export function detectCategory(name = '') {
  * Styling map for file categories.
  */
 export const CATEGORY_STYLES = {
-  'Resume':       'indigo',
+  Resume: 'indigo',
   'Cover Letter': 'blue',
-  'Credential':   'emerald',
+  Credential: 'emerald',
 };
 
 /**

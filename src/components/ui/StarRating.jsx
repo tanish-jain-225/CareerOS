@@ -14,13 +14,13 @@ const COLORS = [
 export default function StarRating({ value = 0, onChange, size = 14, readOnly = false }) {
   return (
     <div className="flex items-center gap-0.5">
-      {[1, 2, 3, 4, 5].map(star => (
+      {[1, 2, 3, 4, 5].map((star) => (
         <button
           key={star}
           type="button"
           disabled={readOnly}
           onClick={() => onChange?.(star)}
-          className={`transition-transform ${readOnly ? 'cursor-default' : 'hover:scale-125 cursor-pointer'}`}
+          className={`transition-transform ${readOnly ? 'cursor-default' : 'cursor-pointer hover:scale-125'}`}
           aria-label={`${star} star${star !== 1 ? 's' : ''}`}
         >
           <Star

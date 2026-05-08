@@ -9,7 +9,7 @@ export default function ProtectedRoute({ children }) {
 
   if (loading) {
     return (
-      <div className="flex-1 flex items-center justify-center min-h-[70vh]">
+      <div className="flex min-h-[70vh] flex-1 items-center justify-center">
         <LogoLoader size="lg" />
       </div>
     );
@@ -17,7 +17,7 @@ export default function ProtectedRoute({ children }) {
 
   if (!user) {
     return (
-      <div className="flex-1 flex flex-col items-center justify-center min-h-[80vh] p-4">
+      <div className="flex min-h-[80vh] flex-1 flex-col items-center justify-center p-4">
         <Auth />
       </div>
     );

@@ -6,18 +6,18 @@ import { ShieldCheck, Target, Zap, ArrowRight, Building2, Briefcase } from 'luci
 
 export default function AcquisitionSuccess({ job, onContinue }) {
   return (
-    <div className="p-8 flex flex-col items-center text-center space-y-8 max-w-md mx-auto">
+    <div className="mx-auto flex max-w-md flex-col items-center space-y-8 p-8 text-center">
       {/* Target Lock Animation */}
       <div className="relative">
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1.2, opacity: 1 }}
-          className="absolute inset-0 bg-emerald-500/20 blur-3xl rounded-full"
+          className="absolute inset-0 rounded-full bg-emerald-500/20 blur-3xl"
         />
-        <div className="w-24 h-24 rounded-[2rem] bg-emerald-500 flex items-center justify-center relative z-10 shadow-[0_0_40px_rgba(16,185,129,0.4)]">
+        <div className="relative z-10 flex h-24 w-24 items-center justify-center rounded-[2rem] bg-emerald-500 shadow-[0_0_40px_rgba(16,185,129,0.4)]">
           <Target size={48} className="text-white" />
         </div>
-        
+
         {/* Pulsing rings */}
         {[1, 2].map((i) => (
           <motion.div
@@ -25,7 +25,7 @@ export default function AcquisitionSuccess({ job, onContinue }) {
             initial={{ scale: 1, opacity: 0.5 }}
             animate={{ scale: 1.5, opacity: 0 }}
             transition={{ duration: 1.5, repeat: Infinity, delay: i * 0.5 }}
-            className="absolute inset-0 border-2 border-emerald-500/30 rounded-[2rem]"
+            className="absolute inset-0 rounded-[2rem] border-2 border-emerald-500/30"
           />
         ))}
       </div>
@@ -33,36 +33,46 @@ export default function AcquisitionSuccess({ job, onContinue }) {
       <div className="space-y-2">
         <div className="flex items-center justify-center gap-2">
           <ShieldCheck size={14} className="text-emerald-400" />
-          <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-400/60">Target Lock Verified</h2>
+          <h2 className="text-[10px] font-black tracking-[0.4em] text-emerald-400/60 uppercase">
+            Target Lock Verified
+          </h2>
         </div>
-        <h1 className="text-3xl font-black font-outfit text-white tracking-tighter">Acquisition Sync Complete</h1>
+        <h1 className="font-outfit text-3xl font-black tracking-tighter text-white">
+          Acquisition Sync Complete
+        </h1>
       </div>
 
-      <div className="w-full panel bg-emerald-500/[0.03] border-emerald-500/10 p-6 space-y-4">
+      <div className="panel w-full space-y-4 border-emerald-500/10 bg-emerald-500/[0.03] p-6">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/5 bg-white/[0.03]">
             <Building2 size={24} className="text-emerald-400" />
           </div>
-          <div className="text-left flex-1 min-w-0">
-            <p className="text-[9px] font-black uppercase tracking-widest text-white/20 mb-1">Company Entity</p>
-            <p className="font-black text-white truncate">{job.company}</p>
+          <div className="min-w-0 flex-1 text-left">
+            <p className="mb-1 text-[9px] font-black tracking-widest text-white/20 uppercase">
+              Company Entity
+            </p>
+            <p className="truncate font-black text-white">{job.company}</p>
           </div>
         </div>
 
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/5 flex items-center justify-center">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/5 bg-white/[0.03]">
             <Briefcase size={24} className="text-indigo-400" />
           </div>
-          <div className="text-left flex-1 min-w-0">
-            <p className="text-[9px] font-black uppercase tracking-widest text-white/20 mb-1">Mission Objective</p>
-            <p className="font-black text-white truncate">{job.role}</p>
+          <div className="min-w-0 flex-1 text-left">
+            <p className="mb-1 text-[9px] font-black tracking-widest text-white/20 uppercase">
+              Mission Objective
+            </p>
+            <p className="truncate font-black text-white">{job.role}</p>
           </div>
         </div>
 
-        <div className="flex items-center justify-between pt-4 border-t border-white/5">
+        <div className="flex items-center justify-between border-t border-white/5 pt-4">
           <div className="flex items-center gap-2">
             <Zap size={14} className="text-amber-400" />
-            <span className="text-[10px] font-black uppercase text-white/40 tracking-widest">Excitement Level</span>
+            <span className="text-[10px] font-black tracking-widest text-white/40 uppercase">
+              Excitement Level
+            </span>
           </div>
           <span className="text-xs font-black text-emerald-400">{job.excitement || 5}/10</span>
         </div>
@@ -70,9 +80,9 @@ export default function AcquisitionSuccess({ job, onContinue }) {
 
       <button
         onClick={onContinue}
-        className="btn-primary w-full h-14 bg-emerald-500 hover:bg-emerald-600 flex items-center justify-center gap-3 shadow-emerald shadow-lg"
+        className="btn-primary shadow-emerald flex h-14 w-full items-center justify-center gap-3 bg-emerald-500 shadow-lg hover:bg-emerald-600"
       >
-        <span className="text-[10px] font-black uppercase tracking-widest">Deploy to Pipeline</span>
+        <span className="text-[10px] font-black tracking-widest uppercase">Deploy to Pipeline</span>
         <ArrowRight size={18} />
       </button>
     </div>
