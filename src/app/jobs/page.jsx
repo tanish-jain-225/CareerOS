@@ -8,17 +8,15 @@ import { motion } from 'framer-motion';
 import { useData } from '@/context/DataContext';
 import { useToast } from '@/context/ToastContext';
 import { useModal } from '@/context/ModalContext';
-import ProtectedRoute from '@/components/ProtectedRoute';
-import AcquisitionSuccess from '@/components/AcquisitionSuccess';
-import Confetti from '@/components/Confetti';
-import JobForm from '@/components/JobForm';
-import ConversionFunnel from '@/components/ConversionFunnel';
-import { useAuth } from '@/context/AuthContext';
-import JobCard from '@/components/JobCard';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
+import AcquisitionSuccess from '@/components/features/jobs/AcquisitionSuccess';
+import Confetti from '@/components/ui/Confetti';
+import JobForm from '@/components/features/jobs/JobForm';
+import ConversionFunnel from '@/components/features/dashboard/ConversionFunnel';
+import JobCard from '@/components/features/jobs/JobCard';
 
 export default function PipelinePage() {
   const { data: jobs, loading: jobsLoading, error: jobsError, addData, updateData, deleteData } = useData().jobs;
-  const { user } = useAuth();
   
   const toast = useToast();
   const { openModal, closeModal } = useModal();

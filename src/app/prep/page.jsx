@@ -5,12 +5,12 @@ import {
   Zap, Plus, Terminal
 } from 'lucide-react';
 import { useCollection } from '@/hooks/useDatabase';
-import ProgressRing from '@/components/ProgressRing';
-import ProtectedRoute from '@/components/ProtectedRoute';
+import ProgressRing from '@/components/ui/ProgressRing';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import { AnimatePresence } from 'framer-motion';
-import TechDomainCard from '@/components/TechDomainCard';
-import DSATaskRow from '@/components/DSATaskRow';
-import StarStoryCard from '@/components/StarStoryCard';
+import TechDomainCard from '@/components/features/identity/TechDomainCard';
+import DSATaskRow from '@/components/features/prep/DSATaskRow';
+import StarStoryCard from '@/components/ui/StarStoryCard';
 
 export default function PrepHub() {
   const { data: dsaTasks, addData: addDsa, updateData: updateDsa, deleteData: deleteDsa, loading: dsaLoading } = useCollection('dsa');

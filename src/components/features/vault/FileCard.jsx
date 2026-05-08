@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { 
   Download, Trash2, Star, Eye, Clock, CheckCircle2 
 } from 'lucide-react';
-import Badge from '@/components/Badge';
+import Badge from '@/components/ui/Badge';
 import { formatBytes, formatDate } from '@/utils/dateUtils';
 import { getFileIcon, CATEGORY_STYLES } from '@/utils/fileUtils';
 

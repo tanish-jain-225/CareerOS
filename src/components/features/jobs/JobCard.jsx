@@ -6,7 +6,7 @@ import {
   Target, ChevronUp, ChevronDown, CheckCircle2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import StarRating from '@/components/StarRating';
+import StarRating from '@/components/ui/StarRating';
 import { getFollowUpStatus } from '@/utils/dateUtils';
 
 const QUALITY_GATE = [

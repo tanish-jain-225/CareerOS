@@ -5,20 +5,20 @@ import {
   Plus, Search, Lock, Upload, X, ShieldCheck, AlertCircle, Trash2
 } from 'lucide-react';
 import { useAuth } from '@/context/AuthContext';
-import LogoLoader from '@/components/LogoLoader';
+import LogoLoader from '@/components/ui/LogoLoader';
 import { useCollection } from '@/hooks/useDatabase';
 import { useToast } from '@/context/ToastContext';
 import { useModal } from '@/context/ModalContext';
-import ProtectedRoute from '@/components/ProtectedRoute';
-import Badge from '@/components/Badge';
-import { SkeletonCard } from '@/components/SkeletonCard';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
+import Badge from '@/components/ui/Badge';
+import { SkeletonCard } from '@/components/ui/SkeletonCard';
 import { motion, AnimatePresence } from 'framer-motion';
 import { formatBytes } from '@/utils/dateUtils';
 import { detectCategory, VAULT_CATEGORIES } from '@/utils/fileUtils';
 
 // Components
-import FileCard from '@/components/FileCard';
-import FilePreview from '@/components/FilePreview';
+import FileCard from '@/components/features/vault/FileCard';
+import FilePreview from '@/components/features/vault/FilePreview';
 
 const MAX_SIZE_BYTES = 700_000; // Firestore document limit is 1MB
 

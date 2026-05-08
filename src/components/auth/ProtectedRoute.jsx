@@ -1,8 +1,8 @@
 'use client';
 
 import { useAuth } from '@/context/AuthContext';
-import Auth from '@/components/Auth';
-import LogoLoader from '@/components/LogoLoader';
+import Auth from '@/components/auth/Auth';
+import LogoLoader from '@/components/ui/LogoLoader';
 
 export default function ProtectedRoute({ children }) {
   const { user, loading } = useAuth();

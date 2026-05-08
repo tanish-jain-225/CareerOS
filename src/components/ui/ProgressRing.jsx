@@ -1,5 +1,15 @@
 'use client';
 
+/**
+ * ProgressRing - A circular progress indicator with customizable size and color.
+ * 
+ * @param {Object} props
+ * @param {number} [props.percentage=0] - Completion percentage (0-100).
+ * @param {number} [props.size=72] - Diameter of the ring in pixels.
+ * @param {number} [props.stroke=6] - Thickness of the progress line.
+ * @param {string} [props.color='#6366f1'] - Hex or CSS color for the progress stroke.
+ * @param {string} [props.label=''] - Optional sub-label to display under the percentage.
+ */
 export default function ProgressRing({ percentage = 0, size = 72, stroke = 6, color = '#6366f1', label = '' }) {
   const r = (size - stroke) / 2;
   const circ = 2 * Math.PI * r;

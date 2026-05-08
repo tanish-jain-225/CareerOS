@@ -6,9 +6,9 @@ import {
   Mail, Edit3, Trash2, Users, Send 
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { LinkedInIcon } from '@/components/BrandIcons';
+import { LinkedInIcon } from '@/components/ui/BrandIcons';
 import { getCadenceStatus } from '@/utils/dateUtils';
-import Badge from '@/components/Badge';
+import Badge from '@/components/ui/Badge';
 
 const PLATFORM_ICON = { LinkedIn: LinkedInIcon, Email: Mail, Referral: Users };
 

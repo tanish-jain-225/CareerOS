@@ -4,19 +4,19 @@ import React, { useMemo, useState } from 'react';
 import { 
   Plus, FileDown, Search, Target, TrendingUp, Zap, Clock, Users, History, Trash2
 } from 'lucide-react';
-import ProtectedRoute from '@/components/ProtectedRoute';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import { useCollection } from '@/hooks/useDatabase';
 import { useToast } from '@/context/ToastContext';
 import { useModal } from '@/context/ModalContext';
-import LogoLoader from '@/components/LogoLoader';
+import LogoLoader from '@/components/ui/LogoLoader';
 import { motion } from 'framer-motion';
 import { getCadenceStatus } from '@/utils/dateUtils';
 
 // Components
-import TemplateCard from '@/components/TemplateCard';
-import ContactForm from '@/components/ContactForm';
-import TemplateForm from '@/components/TemplateForm';
-import { InteractionRow, InteractionCard } from '@/components/InteractionNode';
+import TemplateCard from '@/components/features/comms/TemplateCard';
+import ContactForm from '@/components/features/comms/ContactForm';
+import TemplateForm from '@/components/features/comms/TemplateForm';
+import { InteractionRow, InteractionCard } from '@/components/features/comms/InteractionNode';
 
 const SYSTEM_TEMPLATES = [
   {

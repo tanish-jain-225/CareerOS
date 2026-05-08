@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import ProtectedRoute from '@/components/ProtectedRoute';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
 
 let authState = { user: null, loading: false };
 
@@ -9,11 +9,11 @@ vi.mock('@/context/AuthContext', () => ({
   useAuth: () => authState,
 }));
 
-vi.mock('@/components/LogoLoader', () => ({
+vi.mock('@/components/ui/LogoLoader', () => ({
   default: () => React.createElement('div', null, 'Loading View'),
 }));
 
-vi.mock('@/components/Auth', () => ({
+vi.mock('@/components/auth/Auth', () => ({
   default: () => React.createElement('div', null, 'Auth View'),
 }));
 

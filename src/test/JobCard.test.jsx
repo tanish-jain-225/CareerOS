@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
-import JobCard from '../components/JobCard';
+import JobCard from '@/components/features/jobs/JobCard';
 
 // Mock dateUtils
 vi.mock('../utils/dateUtils', () => ({

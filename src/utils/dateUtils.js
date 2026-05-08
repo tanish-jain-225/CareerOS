@@ -92,6 +92,11 @@ export function formatDate(dateStr) {
   return `${d.getDate()} ${months[d.getMonth()]}`;
 }
 
+/**
+ * Calculates the ISO week number for a given date.
+ * @param {Date} d - The date to check.
+ * @returns {number} The week number (1-53).
+ */
 export function getWeekNumber(d = new Date()) {
   const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
   const dayNum = date.getUTCDay() || 7;

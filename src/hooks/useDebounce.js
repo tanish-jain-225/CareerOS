@@ -2,7 +2,14 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-/** Returns a debounced version of the given value */
+/**
+ * Returns a debounced version of the given value.
+ * Useful for limiting the frequency of expensive operations like API calls.
+ * 
+ * @param {any} value - The value to debounce.
+ * @param {number} delay - The delay in milliseconds.
+ * @returns {any} The debounced value.
+ */
 export function useDebounce(value, delay = 300) {
   const [debounced, setDebounced] = useState(value);
 

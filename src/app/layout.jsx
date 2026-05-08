@@ -1,12 +1,12 @@
 import { Inter, Outfit } from 'next/font/google';
 import './globals.css';
-import Sidebar from '@/components/Sidebar';
+import Sidebar from '@/components/layout/Sidebar';
 import { AuthProvider } from '@/context/AuthContext';
 import { ToastProvider } from '@/context/ToastContext';
 import { ModalProvider } from '@/context/ModalContext';
-import PageTransition from '@/components/PageTransition';
-import CommandPalette from '@/components/CommandPalette';
-import Navbar from '@/components/Navbar';
+import PageTransition from '@/components/layout/PageTransition';
+import CommandPalette from '@/components/layout/CommandPalette';
+import Navbar from '@/components/layout/Navbar';
 import { CommandPaletteProvider } from '@/context/CommandPaletteContext';
 import { DataProvider } from '@/context/DataContext';
 

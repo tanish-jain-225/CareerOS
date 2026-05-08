@@ -16,6 +16,17 @@ const SIZES = {
   md: 'text-[10px] px-2.5 py-1',
 };
 
+/**
+ * Badge - A versatile tag component for statuses, categories, and labels.
+ * 
+ * @param {Object} props
+ * @param {React.ReactNode} props.children - Content to display inside the badge.
+ * @param {'indigo'|'emerald'|'rose'|'amber'|'blue'|'teal'|'white'} [props.variant='white'] - Visual style variant.
+ * @param {'xs'|'sm'|'md'} [props.size='sm'] - Padding and font size level.
+ * @param {boolean} [props.dot=false] - Whether to show a pulse dot indicator.
+ * @param {string} [props.className=''] - Additional CSS classes.
+ * @param {Function} [props.onClick] - Optional click handler.
+ */
 export default function Badge({ children, variant = 'white', size = 'sm', dot = false, className = '', onClick }) {
   const v = VARIANTS[variant] || VARIANTS.white;
   const s = SIZES[size] || SIZES.sm;

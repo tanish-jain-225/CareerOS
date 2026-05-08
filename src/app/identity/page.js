@@ -6,16 +6,16 @@ import {
   ShieldCheck, Zap, ExternalLink, Globe, RefreshCcw, X,
   Target, Sparkles
 } from 'lucide-react';
-import { LinkedInIcon, GitHubIcon } from '@/components/BrandIcons';
+import { LinkedInIcon, GitHubIcon } from '@/components/ui/BrandIcons';
 import { useAuth } from '@/context/AuthContext';
 import { useCollection, useUserDoc } from '@/hooks/useDatabase';
 import { useToast } from '@/context/ToastContext';
-import ProtectedRoute from '@/components/ProtectedRoute';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 
 // Components
-import ProjectCard from '@/components/ProjectCard';
+import ProjectCard from '@/components/features/identity/ProjectCard';
 
 const PROFILE_DEFAULT = {
   name: '',

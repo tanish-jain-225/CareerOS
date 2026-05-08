@@ -5,7 +5,7 @@ import { useAuth } from '@/context/AuthContext';
 import { Mail, Lock, User, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
-import LogoLoader from '@/components/LogoLoader';
+import LogoLoader from '@/components/ui/LogoLoader';
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);

@@ -11,9 +11,9 @@ export default function Loading() {
       <div className="text-center space-y-2">
         <div className="flex items-center justify-center gap-2">
           <Sparkles size={14} className="text-indigo-400 animate-pulse" />
-          <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">Synchronizing Dossier</h2>
+          <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/40">Synchronizing Sector</h2>
         </div>
-        <p className="text-[11px] font-bold text-white/10 uppercase tracking-widest">Accessing Secure Intelligence Nodes...</p>
+        <p className="text-[11px] font-bold text-white/10 uppercase tracking-widest">Accessing Intelligence Nodes...</p>
       </div>
       
       <div className="w-48 h-1 bg-white/5 rounded-full overflow-hidden">

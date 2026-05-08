@@ -11,7 +11,7 @@ import {
   updateProfile
 } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
-import LogoLoader from '@/components/LogoLoader';
+import LogoLoader from '@/components/ui/LogoLoader';
 
 const AuthContext = createContext({});
 

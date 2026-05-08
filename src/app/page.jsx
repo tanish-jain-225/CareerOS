@@ -9,13 +9,13 @@ import {
 import { useCollection } from '@/hooks/useDatabase';
 import { useData } from '@/context/DataContext';
 import { useToast } from '@/context/ToastContext';
-import ProtectedRoute from '@/components/ProtectedRoute';
+import ProtectedRoute from '@/components/auth/ProtectedRoute';
 import { motion } from 'framer-motion';
 
 // Components
-import StatCard from '@/components/StatCard';
-import SuccessAnalytics from '@/components/SuccessAnalytics';
-import ObjectiveList from '@/components/ObjectiveList';
+import StatCard from '@/components/features/dashboard/StatCard';
+import SuccessAnalytics from '@/components/features/dashboard/SuccessAnalytics';
+import ObjectiveList from '@/components/features/dashboard/ObjectiveList';
 
 /**
  * DashboardPage - Mission Command center for CareerOS.

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Save, CheckCircle2 } from 'lucide-react';
-import StarRating from '@/components/StarRating';
+import StarRating from '@/components/ui/StarRating';
 
 const COLUMNS = [
   { id: 'sourced',     name: 'Sourced',       color: 'indigo' },

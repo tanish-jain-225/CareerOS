@@ -3,7 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Trash2, Terminal, ExternalLink } from 'lucide-react';
-import { GitHubIcon } from '@/components/BrandIcons';
+import { GitHubIcon } from '@/components/ui/BrandIcons';
 
 /**
  * ProjectCard component for showcasing proof-of-work in the Identity module.
