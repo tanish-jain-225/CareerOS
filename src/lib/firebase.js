@@ -46,6 +46,9 @@ export function getFirebaseDb() {
   }
 }
 
+export const auth = getFirebaseAuth();
+export const db = getFirebaseDb();
+
 // ─── Emulator connection (browser-only, runs once) ───────────────────────────
 if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_USE_FIREBASE_EMULATOR === 'true') {
   if (!globalThis.__CAREEROS_EMULATOR_CONNECTED__) {
