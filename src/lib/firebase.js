@@ -54,12 +54,9 @@ if (typeof window !== 'undefined' && process.env.NEXT_PUBLIC_USE_FIREBASE_EMULAT
   if (!globalThis.__CAREEROS_EMULATOR_CONNECTED__) {
     const auth = getFirebaseAuth();
     const db = getFirebaseDb();
-
     if (auth && db) {
-      const authHost =
-        process.env.NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_HOST || '127.0.0.1:9099';
-      const firestoreHost =
-        process.env.NEXT_PUBLIC_FIRESTORE_EMULATOR_HOST || '127.0.0.1:8080';
+      const authHost = process.env.NEXT_PUBLIC_FIREBASE_AUTH_EMULATOR_HOST || '127.0.0.1:9099';
+      const firestoreHost = process.env.NEXT_PUBLIC_FIRESTORE_EMULATOR_HOST || '127.0.0.1:8080';
       const [fsHost, fsPort] = firestoreHost.split(':');
 
       connectAuthEmulator(auth, `http://${authHost}`, { disableWarnings: true });
