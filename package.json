@@ -1,7 +1,11 @@
 {
   "name": "careeros",
   "version": "1.0.0",
-  "description": "Tactical Infrastructure for Career Acquisition",
+  "description": "CareerOS is a full-stack career management dashboard built with Next.js, Firebase, and Tailwind CSS.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tanish-jain-225/careeros.git"
+  },
   "main": "index.js",
   "directories": {
     "doc": "docs"
@@ -21,7 +25,7 @@
     "preview": "next start"
   },
   "keywords": [],
-  "author": "",
+  "author": "Tanish Sanghvi <tanishjain020205@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@eslint/js": "^9.39.0",

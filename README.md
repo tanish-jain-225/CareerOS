@@ -1,19 +1,20 @@
 <div align="center">
 
-<img src="public/logo.png" alt="CareerOS Logo" width="80" height="80" />
+<img src="assets/image.png" alt="CareerOS Logo" width="80" height="80" />
 
 # CareerOS
 
 **Tactical Operating System for Professional Career Acquisition**
 
-[![CI](https://github.com/yourusername/careeros/actions/workflows/ci.yml/badge.svg)](https://github.com/yourusername/careeros/actions/workflows/ci.yml)
 [![Next.js](https://img.shields.io/badge/Next.js-16.2.4-black?logo=next.js)](https://nextjs.org/)
 [![Firebase](https://img.shields.io/badge/Firebase-12.12.1-orange?logo=firebase)](https://firebase.google.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.2.4-38bdf8?logo=tailwind-css)](https://tailwindcss.com/)
-[![Vitest](https://img.shields.io/badge/Tests-32%20passing-success?logo=vitest)](https://vitest.dev/)
+[![Vitest](https://img.shields.io/badge/Tests-ready-success?logo=vitest)](https://vitest.dev/)
 [![License](https://img.shields.io/badge/License-ISC-blue)](docs/LICENSE)
 
-[Live Demo](https://careeros.vercel.app) · [Installation Guide](docs/INSTALLATION.md) · [Contributing](docs/CONTRIBUTING.md)
+CI is configured in `.github/workflows/ci.yml`.
+
+[Installation Guide](docs/INSTALLATION.md) · [Contributing](docs/CONTRIBUTING.md) · [Live Demo](https://career-os-henna.vercel.app)
 
 ![CareerOS Banner](assets/banner.png)
 
@@ -25,7 +26,7 @@
 
 CareerOS is a full-stack, production-grade career management platform built for technical professionals. It replaces scattered spreadsheets and disconnected tools with a single, real-time command center — covering everything from job pipeline tracking and outreach CRM to technical interview preparation and secure document storage.
 
-Built on **Next.js 16 App Router**, **Firebase Firestore**, and a custom **"Void-Indigo"** design system, it is deployed live on Vercel and designed to handle real-world career workflows at scale.
+Built on **Next.js 16 App Router**, **Firebase Firestore**, and a custom **"Void-Indigo"** design system, it is deployed on Vercel and designed to handle real-world career workflows at scale.
 
 ---
 
@@ -132,7 +133,6 @@ careeros/
 │       └── ci.yml              # GitHub Actions: lint → format → test → build
 ├── assets/
 │   ├── banner.png              # README banner image
-│   ├── mockup.png              # Dashboard mockup screenshot
 │   └── image.png               # Additional asset
 ├── docs/
 │   ├── GUIDE.md                # Strategic architecture guide
@@ -258,7 +258,7 @@ careeros/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/careeros.git
+git clone https://github.com/<your-github-username>/careeros.git
 cd careeros
 ```
 
@@ -391,7 +391,7 @@ AuthProvider
 | `/jobs`     | `app/jobs/page.jsx`    | Infiltration Hub — job pipeline           |
 | `/comms`    | `app/comms/page.jsx`   | Communication CRM — outreach log          |
 | `/prep`     | `app/prep/page.jsx`    | Tactical Preparation — DSA + STAR + Stack |
-| `/identity` | `app/identity/page.js` | Identity Partition — profile + projects   |
+| `/identity` | `app/identity/page.jsx` | Identity Partition — profile + projects   |
 | `/vault`    | `app/vault/page.jsx`   | Document Vault — secure file storage      |
 
 Each route has its own `layout`, `loading`, and `error` files for granular loading and error states.
@@ -424,21 +424,21 @@ Composite indexes are defined in `firestore.indexes.json` for all collections, o
 Tests live in `src/test/` and use **Vitest** with **React Testing Library** and **jsdom**.
 
 ```bash
-npm run test           # Run all 32 tests
-npm run test:coverage  # Generate HTML coverage report in /coverage
+npm run test           # Run the full test suite
+npm run test:coverage  # Generate coverage report
 ```
 
 ### Test Coverage
 
-| File                        | Tests | What's Covered                                         |
-| --------------------------- | ----- | ------------------------------------------------------ |
-| `JobCard.test.jsx`          | 3     | Render, expand/collapse, delete confirmation           |
-| `ProtectedRoute.test.js`    | 3     | Loading state, unauthenticated, authenticated          |
-| `Dashboard.test.jsx`        | 3     | Title render, metrics display, stats grid              |
-| `Jobs.test.jsx`             | 4     | Title, search filter, modal open, job cards            |
-| `dateUtils.test.js`         | 7     | Business days, follow-up status, cadence               |
-| `utils/dateUtils.test.js`   | 10    | formatBytes, getDaysDifference, formatDate, weekNumber |
-| `hooks/useDebounce.test.js` | 2     | Value debounce, callback debounce                      |
+| File                        | What's Covered                                         |
+| --------------------------- | ------------------------------------------------------ |
+| `JobCard.test.jsx`          | Render, expand/collapse, delete confirmation           |
+| `ProtectedRoute.test.js`    | Loading state, unauthenticated, authenticated          |
+| `Dashboard.test.jsx`        | Title render, metrics display, stats grid              |
+| `Jobs.test.jsx`             | Title, search filter, modal open, job cards            |
+| `dateUtils.test.js`         | Business days, follow-up status, cadence               |
+| `utils/dateUtils.test.js`   | formatBytes, getDaysDifference, formatDate, weekNumber |
+| `hooks/useDebounce.test.js` | Value debounce, callback debounce                      |
 
 ### Mocking Strategy
 
