@@ -1,0 +1,92 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper to check if user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    function isDocOwner() {
+      return request.auth.uid == resource.data.userId;
+    }
+
+    function isNewDocOwner() {
+      return request.auth.uid == request.resource.data.userId;
+    }
+
+    // Standard CRUD pattern for owner-only collections
+    match /vault/{id} {
+      allow read, delete: if isAuthenticated() && isDocOwner();
+      allow create: if isAuthenticated() && isNewDocOwner();
+      allow update: if isAuthenticated() && isDocOwner() && isNewDocOwner();
+    }
+
+    match /jobs/{id} {
+      allow read, delete: if isAuthenticated() && isDocOwner();
+      allow create: if isAuthenticated() && isNewDocOwner();
+      allow update: if isAuthenticated() && isDocOwner() && isNewDocOwner();
+    }
+
+    match /projects/{id} {
+      allow read, delete: if isAuthenticated() && isDocOwner();
+      allow create: if isAuthenticated() && isNewDocOwner();
+      allow update: if isAuthenticated() && isDocOwner() && isNewDocOwner();
+    }
+
+    match /outreach/{id} {
+      allow read, delete: if isAuthenticated() && isDocOwner();
+      allow create: if isAuthenticated() && isNewDocOwner();
+      allow update: if isAuthenticated() && isDocOwner() && isNewDocOwner();
+    }
+
+    match /templates/{id} {
+      allow read, delete: if isAuthenticated() && isDocOwner();
+      allow create: if isAuthenticated() && isNewDocOwner();
+      allow update: if isAuthenticated() && isDocOwner() && isNewDocOwner();
+    }
+
+    match /customTemplates/{id} {
+      allow read, delete: if isAuthenticated() && isDocOwner();
+      allow create: if isAuthenticated() && isNewDocOwner();
+      allow update: if isAuthenticated() && isDocOwner() && isNewDocOwner();
+    }
+
+    match /dsa/{id} {
+      allow read, delete: if isAuthenticated() && isDocOwner();
+      allow create: if isAuthenticated() && isNewDocOwner();
+      allow update: if isAuthenticated() && isDocOwner() && isNewDocOwner();
+    }
+
+    match /techTopics/{id} {
+      allow read, delete: if isAuthenticated() && isDocOwner();
+      allow create: if isAuthenticated() && isNewDocOwner();
+      allow update: if isAuthenticated() && isDocOwner() && isNewDocOwner();
+    }
+
+    match /starStories/{id} {
+      allow read, delete: if isAuthenticated() && isDocOwner();
+      allow create: if isAuthenticated() && isNewDocOwner();
+      allow update: if isAuthenticated() && isDocOwner() && isNewDocOwner();
+    }
+
+    match /tasks/{id} {
+      allow read, delete: if isAuthenticated() && isDocOwner();
+      allow create: if isAuthenticated() && isNewDocOwner();
+      allow update: if isAuthenticated() && isDocOwner() && isNewDocOwner();
+    }
+
+    // Profiles: User-specific identity (uses UID as document ID)
+    match /profiles/{userId} {
+      allow read, write: if isAuthenticated() && isOwner(userId);
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

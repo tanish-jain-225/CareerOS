@@ -1,0 +1,16 @@
+{
+  "name": "CareerOS",
+  "short_name": "CareerOS",
+  "description": "Professional Job Pipeline Management & Career Tracking",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080a10",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
