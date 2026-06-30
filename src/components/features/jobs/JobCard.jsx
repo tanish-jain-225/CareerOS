@@ -35,7 +35,7 @@ const QUALITY_GATE = [
  * @param {Function} props.onEdit - Callback to open the edit form.
  * @param {Object} props.dragHandleProps - dnd-kit attributes and listeners for dragging.
  */
-export default function JobCard({ job, onUpdate, onDelete, onEdit }) {
+export default function JobCard({ job, onUpdate, onDelete, onEdit, dragHandleProps = {} }) {
   const [expanded, setExpanded] = useState(false);
   const followUp = getFollowUpStatus(job);
   const gate = job.qualityGate || {};
@@ -85,11 +85,14 @@ export default function JobCard({ job, onUpdate, onDelete, onEdit }) {
     rejected: 'Rejected',
   };
 
+  const isDraggable = Object.keys(dragHandleProps).length > 0;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="panel group hover:shadow-indigo relative h-full cursor-default border-white/5 bg-white/[0.01] transition-all hover:border-indigo-500/30 hover:bg-white/[0.03]"
+      className={`panel group hover:shadow-indigo relative h-full border-white/5 bg-white/[0.01] transition-all hover:border-indigo-500/30 hover:bg-white/[0.03] ${isDraggable ? 'cursor-grab active:cursor-grabbing' : 'cursor-default'}`}
+      {...dragHandleProps}
     >
       <div className="space-y-4">
         <div className="flex items-start gap-4">

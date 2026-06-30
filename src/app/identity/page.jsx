@@ -131,7 +131,7 @@ export default function IdentityModule() {
           <div className="flex-1 space-y-4 text-center md:text-left">
             <div className="space-y-1">
               <input
-                className="font-outfit w-full bg-transparent text-center text-5xl font-black tracking-tighter text-white transition-all outline-none focus:text-indigo-400 md:text-left"
+                className="font-outfit w-full bg-transparent text-center text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-white transition-all outline-none focus:text-indigo-400 md:text-left"
                 value={currentForm.name || ''}
                 onChange={(e) => updateForm({ name: e.target.value })}
                 placeholder="OPERATOR NAME"
@@ -356,12 +356,12 @@ export default function IdentityModule() {
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: 100, opacity: 0 }}
-              className="fixed right-8 bottom-8 z-[100]"
+              className="fixed right-4 bottom-6 left-4 z-[100] sm:right-8 sm:bottom-8 sm:left-auto"
             >
               <button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="group relative flex items-center gap-4 overflow-hidden rounded-[24px] bg-indigo-500 px-8 py-5 text-[11px] font-black tracking-[0.2em] text-white uppercase shadow-[0_20px_50px_rgba(99,102,241,0.3)] transition-all hover:shadow-[0_20px_50px_rgba(99,102,241,0.5)] active:scale-95"
+                className="group relative flex w-full sm:w-auto items-center justify-center gap-4 overflow-hidden rounded-[24px] bg-indigo-500 px-8 py-5 text-[11px] font-black tracking-[0.2em] text-white uppercase shadow-[0_20px_50px_rgba(99,102,241,0.3)] transition-all hover:shadow-[0_20px_50px_rgba(99,102,241,0.5)] active:scale-95"
               >
                 <div className="group-hover:animate-shimmer absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 {isSaving ? (

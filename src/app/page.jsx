@@ -157,7 +157,7 @@ export default function DashboardPage() {
         </header>
 
         {/* Global Stats Grid */}
-        <div className="flex flex-wrap gap-6">
+        <div className="grid grid-cols-1 gap-6 min-[480px]:grid-cols-2 lg:grid-cols-4">
           <StatCard
             label="Active Pipeline"
             value={metrics.activeApplications}

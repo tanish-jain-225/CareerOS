@@ -103,11 +103,11 @@ export default function PrepHub() {
                     .map((_, i) => (
                       <div
                         key={i}
-                        className="panel h-48 min-w-[280px] flex-1 animate-pulse bg-white/[0.01]"
+                        className="panel h-48 min-w-[240px] flex-1 animate-pulse bg-white/[0.01]"
                       />
                     ))
                 : techTopics.map((topic) => (
-                    <div key={topic.id} className="min-w-[280px] flex-1">
+                    <div key={topic.id} className="min-w-[240px] flex-1">
                       <TechDomainCard topic={topic} onUpdate={updateTech} onDelete={deleteTech} />
                     </div>
                   ))}
@@ -160,7 +160,7 @@ export default function PrepHub() {
         </div>
 
         <section className="space-y-8">
-          <div className="flex items-center justify-between px-2">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between px-2">
             <div className="space-y-1">
               <h2 className="font-outfit text-2xl font-black tracking-tighter text-white">
                 Behavioral Intel (STAR)
@@ -173,7 +173,7 @@ export default function PrepHub() {
               onClick={() =>
                 addStar({ title: 'New Event', situation: '', task_: '', action: '', result: '' })
               }
-              className="btn-primary flex h-12 items-center gap-3 px-6 shadow-xl transition-all active:scale-95"
+              className="btn-primary flex h-12 items-center justify-center gap-3 px-6 shadow-xl transition-all active:scale-95 w-full sm:w-auto"
             >
               <Plus size={18} />
               <span className="text-[10px] font-black tracking-widest uppercase">

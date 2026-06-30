@@ -52,13 +52,14 @@ Built on **Next.js 16 App Router**, **Firebase Firestore**, and a custom **"Void
 
 ### Infiltration Hub — Job Pipeline
 
+- Interactive layout view toggle switcher (Grid List vs. Drag-and-Drop Kanban Board)
 - Grid-based job application tracker with 8 pipeline stages: `Sourced → Shortlisted → Applied → Followed-up → OA → Interview → Offer → Rejected`
+- Drag-and-drop Kanban board built with `@dnd-kit` featuring tactile pointer constraints and dynamic grab indicators
 - Per-card quality gate checklist (resume mapping, outreach drafted, follow-up set)
 - Star rating for excitement level per application
 - Intelligent follow-up urgency detection (3-day and 10-day business day cadence)
 - Real-time conversion funnel analytics (Sourced → Applied → Interview → Secured)
 - One-click CSV export of the full pipeline
-- Drag-and-drop Kanban board via `@dnd-kit`
 
 ### Communication Hub — Outreach CRM
 
@@ -86,12 +87,20 @@ Built on **Next.js 16 App Router**, **Firebase Firestore**, and a custom **"Void
 
 ### Document Vault — Secure Asset Storage
 
-- Drag-and-drop file ingestion with Base64 encoding (700 KB per-file limit for Firestore)
+- Client-side browser-native compression (`CompressionStream('gzip')`) enabling secure Base64 direct-database storage for files up to **5MB** (compressed down to fit under Firestore's 1MB single-document limits)
+- Asynchronous background decompression (`DecompressionStream('gzip')`) and blob-caching on download triggers and file previews
 - Auto-category detection: Resume, Cover Letter, Credential
-- Inline file renaming, starring, preview, and download
+- Inline file renaming, starring, preview (integrated loading animations), and download
 - Bulk select, bulk download, bulk delete
 - Sort by date, name, or size; filter by category
-- Storage usage meter
+- Storage usage meter with memory-safe object URL garbage collection
+
+### Responsive Engineering (Viewport Scaling down to 300px)
+
+- Mobile-first segmented tab switchers (full width on mobile, inline-fixed on desktop)
+- Vertical-stacking responsive section headers to avoid action button squeeze/overflow
+- Micro-calibrated grid structures and margins (switching dashboard stats to responsive CSS grid columns)
+- Full-width mobile bottom drawer save controllers with auto-shift transitions for thumb-reach access
 
 ### Dashboard — Mission Command Center
 
@@ -395,6 +404,24 @@ AuthProvider
 | `/vault`    | `app/vault/page.jsx`    | Document Vault — secure file storage      |
 
 Each route has its own `layout`, `loading`, and `error` files for granular loading and error states.
+
+### Client-side Asset Compression Pipeline
+
+To store documents directly in Firestore safely without hitting database limits or provisioning high-cost storage buckets, CareerOS runs an end-to-end gzip streaming compression engine inside the browser client:
+
+```mermaid
+graph TD
+    A[File Select up to 5MB] --> B[pipeThrough CompressionStream gzip]
+    B --> C[Validate Compressed Size <= 700KB]
+    C -->|Pass| D[Convert to Base64 Data URL]
+    C -->|Fail| E[Show Error Toast]
+    D --> F[Store in Firestore as base64 + compressed: true]
+    
+    F --> G[Download/Preview File]
+    G --> H[fetch base64 and pipeThrough DecompressionStream]
+    H --> I[Generate Local blob: URL]
+    I --> J[Render in iframe / Sandbox download]
+```
 
 ---
 

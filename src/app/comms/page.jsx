@@ -173,17 +173,17 @@ export default function CommunicationHub() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:flex-wrap">
             <button
               onClick={handleExportCSV}
-              className="btn-secondary flex h-14 items-center gap-3 px-6"
+              className="btn-secondary flex h-14 items-center justify-center gap-3 px-6 w-full sm:w-auto"
             >
               <FileDown size={16} />
               <span className="text-[10px] font-black tracking-widest uppercase">Export CSV</span>
             </button>
             <button
               onClick={() => handleOpenContactModal()}
-              className="btn-primary flex h-14 items-center gap-3 px-8 shadow-2xl transition-all active:scale-95"
+              className="btn-primary flex h-14 items-center justify-center gap-3 px-8 shadow-2xl transition-all active:scale-95 w-full sm:w-auto"
               data-testid="comms-new-contact"
             >
               <Plus size={18} />
@@ -192,7 +192,7 @@ export default function CommunicationHub() {
             {selectedTargets.length > 0 && (
               <button
                 onClick={handleBatchPurge}
-                className="flex items-center gap-3 rounded-2xl border border-rose-500/20 bg-rose-500/10 px-6 py-3.5 text-[10px] font-black tracking-widest text-rose-500 uppercase transition-all hover:bg-rose-500/20 active:scale-95"
+                className="flex items-center justify-center gap-3 rounded-2xl border border-rose-500/20 bg-rose-500/10 px-6 py-3.5 text-[10px] font-black tracking-widest text-rose-500 uppercase transition-all hover:bg-rose-500/20 active:scale-95 w-full sm:w-auto"
               >
                 <Trash2 size={16} /> Batch Purge
               </button>
@@ -205,7 +205,7 @@ export default function CommunicationHub() {
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="panel group relative min-w-[280px] flex-1 overflow-hidden"
+            className="panel group relative min-w-[240px] flex-1 overflow-hidden"
           >
             <div className="absolute -right-4 -bottom-4 opacity-[0.02] transition-opacity group-hover:opacity-[0.05]">
               <Users size={120} strokeWidth={1} />
@@ -226,7 +226,7 @@ export default function CommunicationHub() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="panel group relative min-w-[280px] flex-1 overflow-hidden"
+            className="panel group relative min-w-[240px] flex-1 overflow-hidden"
           >
             <div className="absolute -right-4 -bottom-4 opacity-[0.02] transition-opacity group-hover:opacity-[0.05]">
               <Zap size={120} strokeWidth={1} />
@@ -250,7 +250,7 @@ export default function CommunicationHub() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="panel group relative min-w-[280px] flex-1 overflow-hidden"
+            className="panel group relative min-w-[240px] flex-1 overflow-hidden"
           >
             <div className="absolute -right-4 -bottom-4 opacity-[0.02] transition-opacity group-hover:opacity-[0.05]">
               <Clock size={120} strokeWidth={1} />

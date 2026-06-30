@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Plus, Search, Zap, FileDown } from 'lucide-react';
+import { Plus, Search, Zap, FileDown, LayoutGrid, Kanban } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useData } from '@/context/DataContext';
 import { useToast } from '@/context/ToastContext';
@@ -12,6 +12,7 @@ import Confetti from '@/components/ui/Confetti';
 import JobForm from '@/components/features/jobs/JobForm';
 import ConversionFunnel from '@/components/features/dashboard/ConversionFunnel';
 import JobCard from '@/components/features/jobs/JobCard';
+import KanbanBoard from '@/components/features/jobs/KanbanBoard';
 
 /**
  * PipelinePage (Infiltration Hub) - Comprehensive job application tracking node.
@@ -43,6 +44,7 @@ export default function PipelinePage() {
   const { openModal, closeModal } = useModal();
   const [searchQuery, setSearchQuery] = useState('');
   const [confetti, setConfetti] = useState(false);
+  const [viewMode, setViewMode] = useState('grid');
 
   const sortedJobs = [...jobs].sort(
     (a, b) => new Date(b.appliedDate || 0) - new Date(a.appliedDate || 0)
@@ -102,6 +104,32 @@ export default function PipelinePage() {
                 className="w-full rounded-2xl border border-white/5 bg-white/[0.02] py-3 pr-5 pl-11 text-xs font-bold text-white transition-all placeholder:text-white/20 focus:ring-4 focus:ring-emerald-500/5 focus:outline-none"
               />
             </div>
+            <div className="flex w-full sm:w-28 rounded-2xl border border-white/5 bg-white/[0.02] p-1">
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`flex-1 flex h-12 items-center justify-center rounded-xl transition-all ${
+                  viewMode === 'grid'
+                    ? 'shadow-indigo bg-indigo-500 text-white'
+                    : 'text-white/30 hover:text-white/60'
+                }`}
+                aria-label="Grid View"
+                data-testid="view-toggle-grid"
+              >
+                <LayoutGrid size={16} />
+              </button>
+              <button
+                onClick={() => setViewMode('kanban')}
+                className={`flex-1 flex h-12 items-center justify-center rounded-xl transition-all ${
+                  viewMode === 'kanban'
+                    ? 'shadow-indigo bg-indigo-500 text-white'
+                    : 'text-white/30 hover:text-white/60'
+                }`}
+                aria-label="Kanban View"
+                data-testid="view-toggle-kanban"
+              >
+                <Kanban size={16} />
+              </button>
+            </div>
             <button
               onClick={() => {
                 const csv = ['Company,Role,Status,Source,Applied Date,Excitement,URL,Notes'];
@@ -127,7 +155,7 @@ export default function PipelinePage() {
                 a.download = `careeros_jobs_${new Date().toISOString().split('T')[0]}.csv`;
                 a.click();
               }}
-              className="btn-secondary flex h-14 items-center gap-3 px-6"
+              className="btn-secondary flex h-14 items-center justify-center gap-3 px-6 w-full sm:w-auto"
             >
               <FileDown size={16} />
               <span className="text-[10px] font-black tracking-widest uppercase">Export</span>
@@ -151,10 +179,10 @@ export default function PipelinePage() {
                   { title: 'Acquire New Target', size: 'lg' }
                 )
               }
-              className="btn-primary flex h-14 items-center gap-3 px-8 shadow-2xl"
+              className="btn-primary flex h-14 items-center justify-center gap-3 px-8 shadow-2xl transition-all active:scale-95 w-full sm:w-auto"
               data-testid="jobs-new-target"
             >
-              <Plus size={20} />
+              <Plus size={18} />
               <span className="text-[10px] font-black tracking-widest uppercase">New Target</span>
             </button>
           </div>
@@ -185,6 +213,26 @@ export default function PipelinePage() {
                 <div key={i} className="panel h-48 animate-pulse border-white/5 bg-white/[0.01]" />
               ))}
             </div>
+          ) : viewMode === 'kanban' ? (
+            <KanbanBoard
+              jobs={filteredJobs}
+              onUpdate={updateData}
+              onDelete={deleteData}
+              onEdit={(job) =>
+                openModal(
+                  <JobForm
+                    initial={job}
+                    onSave={async (f) => {
+                      await updateData(job.id, f);
+                      toast.success('Target Updated');
+                      closeModal();
+                    }}
+                    onClose={closeModal}
+                  />,
+                  { title: 'Edit Target Intel', size: 'lg' }
+                )
+              }
+            />
           ) : (
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {filteredJobs.map((j) => (

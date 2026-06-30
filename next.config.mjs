@@ -1,3 +1,16 @@
+import fs from 'fs';
+import path from 'path';
+
+try {
+  const iconPath = path.resolve('src/app/icon.png');
+  if (fs.existsSync(iconPath)) {
+    fs.unlinkSync(iconPath);
+    console.log('[CareerOS] Deleted duplicate src/app/icon.png to use logo.png exclusively');
+  }
+} catch (err) {
+  console.error('[CareerOS] Icon deletion error:', err);
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {

@@ -19,7 +19,8 @@ import FileCard from '@/components/features/vault/FileCard';
 import FilePreview from '@/components/features/vault/FilePreview';
 import ConfirmDialog from '@/components/ui/ConfirmDialog';
 
-const MAX_SIZE_BYTES = 700_000; // Firestore document limit is 1MB
+const MAX_SIZE_BYTES = 700_000; // Firestore document limit is 1MB (compressed limit)
+const MAX_UNCOMPRESSED_SIZE_BYTES = 5_000_000; // 5MB uncompressed limit
 
 /**
  * SecureVault - Professional document management system for career assets.
@@ -57,6 +58,27 @@ export default function SecureVault() {
 
   // --- Handlers ---
 
+  const decompressAndDownload = async (file) => {
+    let href = file.content;
+    if (file.compressed) {
+      try {
+        const res = await fetch(file.content);
+        const decompressedStream = res.body.pipeThrough(new DecompressionStream('gzip'));
+        const decompressedBlob = await new Response(decompressedStream).blob();
+        href = URL.createObjectURL(decompressedBlob);
+      } catch (err) {
+        console.error('Decompression error:', err);
+      }
+    }
+    const a = document.createElement('a');
+    a.href = href;
+    a.download = file.name;
+    a.click();
+    if (href.startsWith('blob:')) {
+      setTimeout(() => URL.revokeObjectURL(href), 100);
+    }
+  };
+
   const openPreview = (file) => {
     openModal(<FilePreview file={file} />, {
       title: 'Resource Inspection',
@@ -90,17 +112,14 @@ export default function SecureVault() {
     );
   };
 
-  const bulkDownload = () => {
-    selectedFiles.forEach((id) => {
+  const bulkDownload = async () => {
+    toast.success(`Downloading ${selectedFiles.length} Resources`);
+    for (const id of selectedFiles) {
       const file = files.find((f) => f.id === id);
       if (file) {
-        const a = document.createElement('a');
-        a.href = file.content;
-        a.download = file.name;
-        a.click();
+        await decompressAndDownload(file);
       }
-    });
-    toast.success(`Downloading ${selectedFiles.length} Resources`);
+    }
   };
 
   const toggleSelectAll = () => {
@@ -117,25 +136,40 @@ export default function SecureVault() {
     setIsUploading(true);
 
     const processFile = async (file) => {
-      if (file.size > MAX_SIZE_BYTES) {
-        toast.error(`${file.name}: 700KB limit exceeded for direct vault storage.`);
+      if (file.size > MAX_UNCOMPRESSED_SIZE_BYTES) {
+        toast.error(`${file.name}: 5MB file limit exceeded.`);
         return;
       }
       try {
         setUploadProgress(10);
+
+        // Compress using browser native CompressionStream (gzip)
+        const stream = file.stream();
+        const compressedStream = stream.pipeThrough(new CompressionStream('gzip'));
+        const compressedBlob = await new Response(compressedStream).blob();
+
+        if (compressedBlob.size > MAX_SIZE_BYTES) {
+          toast.error(`${file.name}: Compressed size (${formatBytes(compressedBlob.size)}) exceeds the 700KB database limit.`);
+          return;
+        }
+
+        setUploadProgress(50);
+
         const base64Content = await new Promise((resolve, reject) => {
           const reader = new FileReader();
-          reader.onprogress = (e) => {
-            if (e.lengthComputable) setUploadProgress(Math.round(10 + (e.loaded / e.total) * 75));
-          };
           reader.onload = () => resolve(reader.result);
           reader.onerror = reject;
-          reader.readAsDataURL(file);
+          reader.readAsDataURL(compressedBlob);
         });
+
+        setUploadProgress(80);
+
         await addData({
           name: file.name,
           type: file.type || 'application/octet-stream',
-          size: file.size,
+          size: file.size, // Original uncompressed size
+          compressedSize: compressedBlob.size,
+          compressed: true,
           content: base64Content,
           uploadedAt: new Date().toISOString(),
           category: detectCategory(file.name),
@@ -316,27 +350,27 @@ export default function SecureVault() {
             ))}
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col gap-4 w-full sm:flex-row sm:items-center sm:w-auto">
             <AnimatePresence>
               {selectedFiles.length > 0 && (
                 <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 20 }}
-                  className="flex items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.02] p-1.5"
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  className="flex flex-wrap items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.02] p-1.5 w-full"
                 >
                   <span className="px-4 text-[9px] font-black text-white/40 uppercase">
                     {selectedFiles.length} Selected
                   </span>
                   <button
                     onClick={bulkDownload}
-                    className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-5 py-2.5 text-[9px] font-black tracking-widest text-emerald-400 uppercase transition-all hover:bg-emerald-500/20"
+                    className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/10 px-5 py-2.5 text-[9px] font-black tracking-widest text-emerald-400 uppercase transition-all hover:bg-emerald-500/20"
                   >
                     <Upload size={12} className="rotate-180" /> Download
                   </button>
                   <button
                     onClick={bulkDelete}
-                    className="flex items-center gap-2 rounded-xl border border-rose-500/20 bg-rose-500/10 px-5 py-2.5 text-[9px] font-black tracking-widest text-rose-500 uppercase transition-all hover:bg-rose-500/20"
+                    className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-rose-500/20 bg-rose-500/10 px-5 py-2.5 text-[9px] font-black tracking-widest text-rose-500 uppercase transition-all hover:bg-rose-500/20"
                   >
                     <Trash2 size={12} /> Purge
                   </button>
@@ -352,7 +386,7 @@ export default function SecureVault() {
 
             <button
               onClick={toggleSelectAll}
-              className={`rounded-2xl border px-5 py-3 text-[9px] font-black tracking-widest uppercase transition-all ${
+              className={`rounded-2xl border px-5 py-3 text-[9px] font-black tracking-widest uppercase transition-all w-full sm:w-auto text-center ${
                 selectedFiles.length === filteredFiles.length && filteredFiles.length > 0
                   ? 'border-indigo-500 bg-indigo-500 text-white'
                   : 'border-white/5 bg-white/[0.01] text-white/20 hover:border-white/10 hover:text-white/40'
@@ -363,7 +397,7 @@ export default function SecureVault() {
                 : 'Select All'}
             </button>
 
-            <div className="flex items-center gap-1.5 rounded-2xl border border-white/5 bg-white/[0.015] p-1.5">
+            <div className="flex w-full items-center justify-between gap-1.5 rounded-2xl border border-white/5 bg-white/[0.015] p-1.5 sm:w-auto">
               {[
                 { id: 'date', label: 'Recent' },
                 { id: 'name', label: 'Name' },
@@ -372,7 +406,7 @@ export default function SecureVault() {
                 <button
                   key={opt.id}
                   onClick={() => setSortBy(opt.id)}
-                  className={`rounded-xl px-5 py-2.5 text-[9px] font-black tracking-widest uppercase transition-all ${
+                  className={`flex-1 rounded-xl px-5 py-2.5 text-[9px] font-black tracking-widest uppercase transition-all text-center ${
                     sortBy === opt.id
                       ? 'bg-white/5 text-white shadow-sm'
                       : 'text-white/15 hover:text-white/30'
@@ -425,12 +459,7 @@ export default function SecureVault() {
                       key={file.id}
                       file={file}
                       onPreview={openPreview}
-                      onDownload={(f) => {
-                        const a = document.createElement('a');
-                        a.href = f.content;
-                        a.download = f.name;
-                        a.click();
-                      }}
+                      onDownload={decompressAndDownload}
                       onDelete={(id) => {
                         deleteData(id);
                         toast.info('Document Removed');

@@ -13,13 +13,13 @@ import { DataProvider } from '@/context/DataContext';
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-inter-next',
 });
 
 const outfit = Outfit({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-outfit',
+  variable: '--font-outfit-next',
 });
 
 export const metadata = {
@@ -28,10 +28,6 @@ export const metadata = {
     'Enterprise-grade job tracking, CRM, preparation modules, and portfolio management for ambitious professionals.',
   keywords: ['job tracker', 'career management', 'CRM', 'job pipeline', 'interview prep'],
   authors: [{ name: 'CareerOS' }],
-  icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
-  },
   openGraph: {
     title: 'CareerOS | Professional Job Pipeline Management',
     description:
@@ -49,6 +45,9 @@ export const metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: '/logo.png',
   },
 };
 
