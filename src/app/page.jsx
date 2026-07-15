@@ -138,7 +138,7 @@ export default function DashboardPage() {
               <span className="text-indigo-400">{pf.name?.split(' ')[0] || 'Operator'}</span>
             </h1>
             <p className="max-w-2xl text-sm leading-relaxed font-medium text-white/40">
-              Real-time synchronization of application pipelines, technical readiness modules, and
+              Real-time synchronization of application pipelines, technical readiness modules and
               engagement cadences.
             </p>
           </div>

@@ -1,6 +1,6 @@
 # CareerOS Strategic Guide
 
-Welcome to the **CareerOS** Command Center documentation. This guide provides a high-fidelity overview of the platform's architecture, design philosophy, and operational protocols.
+Welcome to the **CareerOS** Command Center documentation. This guide provides a high-fidelity overview of the platform's architecture, design philosophy and operational protocols.
 
 ---
 
@@ -27,7 +27,7 @@ Management of your professional "Proof of Work".
 
 Encrypted document management sector.
 
-- **Categorical Isolation**: Automatic classification of Resumes, Cover Letters, and Credentials.
+- **Categorical Isolation**: Automatic classification of Resumes, Cover Letters and Credentials.
 - **Visual Inspection**: Built-in high-fidelity previewer for rapid document verification.
 
 ### 4. Communication Hub (CRM Module)

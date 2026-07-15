@@ -9,7 +9,7 @@ import { getFileIcon, CATEGORY_STYLES } from '@/utils/fileUtils';
 
 /**
  * Individual file card for the Document Vault.
- * Supports renaming, starring, previewing, and downloading.
+ * Supports renaming, starring, previewing and downloading.
  */
 const FileCard = ({ file, onPreview, onDownload, onDelete, onUpdate, isSelected, onSelect }) => {
   const [isEditing, setIsEditing] = useState(false);

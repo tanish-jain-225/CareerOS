@@ -26,7 +26,7 @@ CI is configured in `.github/workflows/ci.yml`.
 
 CareerOS is a full-stack, production-grade career management platform built for technical professionals. It replaces scattered spreadsheets and disconnected tools with a single, real-time command center — covering everything from job pipeline tracking and outreach CRM to technical interview preparation and secure document storage.
 
-Built on **Next.js 16 App Router**, **Firebase Firestore**, and a custom **"Void-Indigo"** design system, it is deployed on Vercel and designed to handle real-world career workflows at scale.
+Built on **Next.js 16 App Router**, **Firebase Firestore** and a custom **"Void-Indigo"** design system, it is deployed on Vercel and designed to handle real-world career workflows at scale.
 
 ---
 
@@ -63,16 +63,16 @@ Built on **Next.js 16 App Router**, **Firebase Firestore**, and a custom **"Void
 
 ### Communication Hub — Outreach CRM
 
-- Full contact log with name, role, company, platform, and status tracking
+- Full contact log with name, role, company, platform and status tracking
 - Cadence engine: 17-day outreach cycle with visual progress bars and overdue alerts
-- Batch select, bulk delete, and CSV export
+- Batch select, bulk delete and CSV export
 - User-defined message template library + system-provided inspiration templates
 - Responsive table (desktop) and card (mobile) views
 - Email validation on contact forms
 
 ### Tactical Preparation — Interview Readiness
 
-- **Stack Mastery**: Domain-specific proficiency sliders across Languages, Frontend, Backend, and Cloud
+- **Stack Mastery**: Domain-specific proficiency sliders across Languages, Frontend, Backend and Cloud
 - **DSA Sprint Log**: Problem tracker with difficulty cycling (Easy / Medium / Hard) and completion toggle
 - **Behavioral Intel (STAR)**: Structured Situation / Task / Action / Result narrative vault
 - Dual progress rings showing overall DSA completion and average stack mastery
@@ -90,7 +90,7 @@ Built on **Next.js 16 App Router**, **Firebase Firestore**, and a custom **"Void
 - Client-side browser-native compression (`CompressionStream('gzip')`) enabling secure Base64 direct-database storage for files up to **5MB** (compressed down to fit under Firestore's 1MB single-document limits)
 - Asynchronous background decompression (`DecompressionStream('gzip')`) and blob-caching on download triggers and file previews
 - Auto-category detection: Resume, Cover Letter, Credential
-- Inline file renaming, starring, preview (integrated loading animations), and download
+- Inline file renaming, starring, preview (integrated loading animations) and download
 - Bulk select, bulk download, bulk delete
 - Sort by date, name, or size; filter by category
 - Storage usage meter with memory-safe object URL garbage collection
@@ -403,7 +403,7 @@ AuthProvider
 | `/identity` | `app/identity/page.jsx` | Identity Partition — profile + projects   |
 | `/vault`    | `app/vault/page.jsx`    | Document Vault — secure file storage      |
 
-Each route has its own `layout`, `loading`, and `error` files for granular loading and error states.
+Each route has its own `layout`, `loading` and `error` files for granular loading and error states.
 
 ### Client-side Asset Compression Pipeline
 

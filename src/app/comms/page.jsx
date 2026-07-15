@@ -168,7 +168,7 @@ export default function CommunicationHub() {
               Interaction History<span className="text-indigo-500">.</span>
             </h1>
             <p className="max-w-2xl text-sm leading-relaxed font-medium text-white/40">
-              Strategic tracking of network engagements, recruiter correspondence, and referral
+              Strategic tracking of network engagements, recruiter correspondence and referral
               loops.
             </p>
           </div>

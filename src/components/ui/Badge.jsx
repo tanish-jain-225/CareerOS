@@ -17,7 +17,7 @@ const SIZES = {
 };
 
 /**
- * Badge - A versatile tag component for statuses, categories, and labels.
+ * Badge - A versatile tag component for statuses, categories and labels.
  *
  * @param {Object} props
  * @param {React.ReactNode} props.children - Content to display inside the badge.

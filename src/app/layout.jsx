@@ -25,13 +25,13 @@ const outfit = Outfit({
 export const metadata = {
   title: 'CareerOS | Professional Job Pipeline Management',
   description:
-    'Enterprise-grade job tracking, CRM, preparation modules, and portfolio management for ambitious professionals.',
+    'Enterprise-grade job tracking, CRM, preparation modules and portfolio management for ambitious professionals.',
   keywords: ['job tracker', 'career management', 'CRM', 'job pipeline', 'interview prep'],
   authors: [{ name: 'CareerOS' }],
   openGraph: {
     title: 'CareerOS | Professional Job Pipeline Management',
     description:
-      'Enterprise-grade job tracking, CRM, preparation modules, and portfolio management.',
+      'Enterprise-grade job tracking, CRM, preparation modules and portfolio management.',
     type: 'website',
     locale: 'en_US',
     siteName: 'CareerOS',
@@ -40,7 +40,7 @@ export const metadata = {
     card: 'summary_large_image',
     title: 'CareerOS | Professional Job Pipeline Management',
     description:
-      'Enterprise-grade job tracking, CRM, preparation modules, and portfolio management.',
+      'Enterprise-grade job tracking, CRM, preparation modules and portfolio management.',
   },
   robots: {
     index: true,

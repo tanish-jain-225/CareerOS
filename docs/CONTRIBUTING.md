@@ -1,6 +1,6 @@
 # Contributing to CareerOS
 
-Thank you for your interest in contributing to CareerOS! As a high-fidelity, tactical career management platform, we maintain rigorous standards for code quality, design, and documentation.
+Thank you for your interest in contributing to CareerOS! As a high-fidelity, tactical career management platform, we maintain rigorous standards for code quality, design and documentation.
 
 ## 🛠 Development Setup
 
