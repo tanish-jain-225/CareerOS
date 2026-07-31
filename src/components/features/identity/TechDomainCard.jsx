@@ -24,6 +24,8 @@ export default function TechDomainCard({ topic, onUpdate, onDelete }) {
           </div>
           <div>
             <input
+              id={`tech-topic-${topic.id}`}
+              name="topicName"
               className="font-outfit w-full bg-transparent text-sm font-black text-white transition-colors outline-none focus:text-indigo-400"
               defaultValue={topic.topic}
               onBlur={(e) => onUpdate(topic.id, { topic: e.target.value })}
@@ -70,6 +72,8 @@ export default function TechDomainCard({ topic, onUpdate, onDelete }) {
           </div>
         </div>
         <input
+          id={`tech-mastery-${topic.id}`}
+          name="mastery"
           type="range"
           min="0"
           max="100"

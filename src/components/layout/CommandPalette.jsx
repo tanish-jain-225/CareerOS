@@ -132,6 +132,8 @@ export default function CommandPalette() {
             <Search size={20} className="text-white/20" />
             <input
               ref={inputRef}
+              id="command-palette-search"
+              name="commandQuery"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyDown={onKeyDown}

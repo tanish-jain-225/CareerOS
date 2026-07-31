@@ -279,6 +279,8 @@ export default function CommunicationHub() {
                   size={14}
                 />
                 <input
+                  id="comms-search"
+                  name="searchQuery"
                   type="text"
                   placeholder="Search contacts..."
                   value={searchQuery}

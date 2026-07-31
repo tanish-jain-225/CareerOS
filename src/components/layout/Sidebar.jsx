@@ -71,6 +71,7 @@ export default function Sidebar() {
             alt="CareerOS Logo"
             width={28}
             height={28}
+            priority
             className="object-contain"
           />
         </div>

@@ -131,12 +131,16 @@ export default function IdentityModule() {
           <div className="flex-1 space-y-4 text-center md:text-left">
             <div className="space-y-1">
               <input
+                id="profile-name"
+                name="name"
                 className="font-outfit w-full bg-transparent text-center text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-white transition-all outline-none focus:text-indigo-400 md:text-left"
                 value={currentForm.name || ''}
                 onChange={(e) => updateForm({ name: e.target.value })}
                 placeholder="OPERATOR NAME"
               />
               <input
+                id="profile-title"
+                name="title"
                 className="w-full bg-transparent text-center text-sm font-bold tracking-widest text-indigo-400/60 uppercase outline-none md:text-left"
                 value={currentForm.title || ''}
                 onChange={(e) => updateForm({ title: e.target.value })}
@@ -147,6 +151,8 @@ export default function IdentityModule() {
               <div className="flex items-center gap-3">
                 <MapPin size={14} className="text-indigo-500" />
                 <input
+                  id="profile-location"
+                  name="location"
                   className="w-48 bg-transparent text-[10px] font-black tracking-widest text-white/40 uppercase transition-all outline-none focus:text-white"
                   value={currentForm.location || ''}
                   onChange={(e) => updateForm({ location: e.target.value })}
@@ -159,6 +165,8 @@ export default function IdentityModule() {
               <div className="flex items-center gap-3">
                 <Phone size={14} className="text-indigo-500" />
                 <input
+                  id="profile-phone"
+                  name="phone"
                   className="w-32 bg-transparent text-[10px] font-black tracking-widest text-white/40 uppercase transition-all outline-none focus:text-white"
                   value={currentForm.phone || ''}
                   onChange={(e) => updateForm({ phone: e.target.value })}
@@ -178,6 +186,8 @@ export default function IdentityModule() {
               </h3>
               <div className="panel border-white/5 bg-white/[0.01] p-6">
                 <textarea
+                  id="profile-mission"
+                  name="mission"
                   className="h-32 w-full resize-none bg-transparent text-xs leading-relaxed font-medium text-white/50 transition-colors outline-none focus:text-white"
                   value={currentForm.mission || ''}
                   onChange={(e) => updateForm({ mission: e.target.value })}
@@ -259,6 +269,8 @@ export default function IdentityModule() {
                         {label} Link
                       </p>
                       <input
+                        id={`profile-${field}`}
+                        name={field}
                         className="w-full truncate bg-transparent text-[10px] font-bold text-white/40 transition-colors outline-none focus:text-white"
                         value={currentForm[field] || ''}
                         onChange={(e) => updateForm({ [field]: e.target.value })}

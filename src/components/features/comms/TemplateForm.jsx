@@ -21,6 +21,8 @@ export default function TemplateForm({ onSave, onClose }) {
           Template Name
         </label>
         <input
+          id="template-title"
+          name="title"
           className="input-field h-12 text-sm"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
@@ -33,6 +35,8 @@ export default function TemplateForm({ onSave, onClose }) {
           Template Body
         </label>
         <textarea
+          id="template-body"
+          name="body"
           className="input-field h-40 resize-none text-sm"
           value={body}
           onChange={(e) => setBody(e.target.value)}

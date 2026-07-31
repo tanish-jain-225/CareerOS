@@ -35,6 +35,8 @@ export default function ObjectiveList({ tasks, newTask, setNewTask, onAdd, onUpd
       <div className="panel flex min-h-[450px] flex-col border-white/5">
         <div className="relative mb-6">
           <input
+            id="new-task-input"
+            name="newTask"
             className="w-full rounded-2xl border border-white/5 bg-white/[0.03] px-5 py-4 pr-14 text-xs font-medium text-white transition-all placeholder:text-white/20 focus:border-indigo-500/20 focus:ring-4 focus:ring-indigo-500/5 focus:outline-none"
             placeholder="Synchronize objective..."
             value={newTask}

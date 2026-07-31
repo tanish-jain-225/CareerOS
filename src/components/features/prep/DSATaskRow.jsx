@@ -36,6 +36,8 @@ export default function DSATaskRow({ task, onUpdate, onDelete }) {
 
       <div className="min-w-0 flex-1">
         <input
+          id={`dsa-title-input-${task.id}`}
+          name="dsaTitle"
           className={`w-full bg-transparent text-xs font-bold transition-colors outline-none ${
             task.completed ? 'text-white/20 line-through' : 'text-white/70 group-hover:text-white'
           }`}

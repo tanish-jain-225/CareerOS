@@ -75,7 +75,7 @@ export default function Navbar() {
       <nav className="fixed inset-x-0 top-0 z-50 flex h-16 items-center justify-between border-b border-white/5 bg-[#05070a]/80 px-6 backdrop-blur-xl md:hidden">
         <div className="flex items-center gap-3">
           <div className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-xl border border-white/5 bg-white/[0.03] shadow-lg">
-            <Image src="/logo.png" alt="Logo" width={20} height={20} className="object-contain" />
+            <Image src="/logo.png" alt="Logo" width={20} height={20} priority className="object-contain" />
           </div>
           <span className="font-outfit text-xs font-black tracking-tight text-white uppercase">
             Career<span className="text-indigo-500">OS</span>

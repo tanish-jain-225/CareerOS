@@ -97,6 +97,8 @@ export default function PipelinePage() {
                 size={16}
               />
               <input
+                id="jobs-search"
+                name="searchQuery"
                 type="text"
                 placeholder="Search pipeline..."
                 value={searchQuery}

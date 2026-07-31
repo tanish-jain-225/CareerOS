@@ -255,6 +255,8 @@ export default function SecureVault() {
                 size={16}
               />
               <input
+                id="vault-search"
+                name="searchQuery"
                 type="text"
                 placeholder="Search resources..."
                 value={searchQuery}
@@ -271,6 +273,8 @@ export default function SecureVault() {
                 {isUploading ? 'Processing...' : 'Add Resource'}
               </span>
               <input
+                id="vault-file-upload"
+                name="fileUpload"
                 type="file"
                 className="hidden"
                 multiple

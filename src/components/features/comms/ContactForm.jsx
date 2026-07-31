@@ -50,6 +50,8 @@ export default function ContactForm({ initial, onSave, onClose }) {
             Contact Name
           </label>
           <input
+            id="contact-name"
+            name="name"
             className="input-field h-12 text-sm"
             maxLength={100}
             value={form.name}
@@ -64,6 +66,8 @@ export default function ContactForm({ initial, onSave, onClose }) {
             Role / Title
           </label>
           <input
+            id="contact-role"
+            name="role"
             className="input-field h-12 text-sm"
             maxLength={100}
             value={form.role}
@@ -79,6 +83,8 @@ export default function ContactForm({ initial, onSave, onClose }) {
             Company
           </label>
           <input
+            id="contact-company"
+            name="company"
             className="input-field h-12 text-sm"
             maxLength={100}
             value={form.company}
@@ -92,6 +98,8 @@ export default function ContactForm({ initial, onSave, onClose }) {
             Platform
           </label>
           <select
+            id="contact-platform"
+            name="platform"
             className="input-field h-12 bg-[#05070a] text-sm"
             value={form.platform}
             onChange={(e) => set('platform', e.target.value)}
@@ -108,6 +116,8 @@ export default function ContactForm({ initial, onSave, onClose }) {
             Status
           </label>
           <select
+            id="contact-status"
+            name="status"
             className="input-field h-12 bg-[#05070a] text-sm"
             value={form.status}
             onChange={(e) => set('status', e.target.value)}
@@ -126,6 +136,8 @@ export default function ContactForm({ initial, onSave, onClose }) {
           Email
         </label>
         <input
+          id="contact-email"
+          name="email"
           className={`input-field h-12 text-sm ${emailError ? 'border-rose-500/40 focus:ring-rose-500/10' : ''}`}
           type="email"
           maxLength={150}
@@ -143,6 +155,8 @@ export default function ContactForm({ initial, onSave, onClose }) {
           Notes
         </label>
         <textarea
+          id="contact-notes"
+          name="notes"
           className="input-field h-24 resize-none text-sm"
           maxLength={500}
           value={form.notes}

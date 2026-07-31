@@ -53,6 +53,8 @@ export default function JobForm({ initial, onSave, onClose }) {
             Company Entity
           </label>
           <input
+            id="job-company"
+            name="company"
             className="input-field h-12 text-sm"
             maxLength={100}
             value={form.company}
@@ -67,6 +69,8 @@ export default function JobForm({ initial, onSave, onClose }) {
             Role Title
           </label>
           <input
+            id="job-role"
+            name="role"
             className="input-field h-12 text-sm"
             maxLength={100}
             value={form.role}
@@ -83,6 +87,8 @@ export default function JobForm({ initial, onSave, onClose }) {
             Pipeline Stage
           </label>
           <select
+            id="job-status"
+            name="status"
             className="input-field h-12 bg-[#05070a] text-sm"
             value={form.status}
             onChange={(e) => set('status', e.target.value)}
@@ -100,6 +106,8 @@ export default function JobForm({ initial, onSave, onClose }) {
             Applied Date
           </label>
           <input
+            id="job-applied-date"
+            name="appliedDate"
             type="date"
             className="input-field h-12 text-sm"
             value={form.appliedDate}
@@ -111,6 +119,8 @@ export default function JobForm({ initial, onSave, onClose }) {
             Infiltration Source
           </label>
           <select
+            id="job-source"
+            name="source"
             className="input-field h-12 bg-[#05070a] text-sm"
             value={form.source}
             onChange={(e) => set('source', e.target.value)}
@@ -129,6 +139,8 @@ export default function JobForm({ initial, onSave, onClose }) {
           Target URL
         </label>
         <input
+          id="job-url"
+          name="jobUrl"
           className="input-field h-12 text-sm"
           maxLength={500}
           value={form.jobUrl || ''}
@@ -142,6 +154,8 @@ export default function JobForm({ initial, onSave, onClose }) {
           Intelligence Notes
         </label>
         <textarea
+          id="job-notes"
+          name="notes"
           className="input-field h-24 resize-none text-sm"
           maxLength={500}
           value={form.notes || ''}

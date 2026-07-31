@@ -38,6 +38,8 @@ export default function ProjectCard({ project, onUpdate, onDelete }) {
             Project Identifier
           </label>
           <input
+            id={`project-name-${project.id}`}
+            name="projectName"
             className="input-field h-12 text-sm font-bold"
             defaultValue={project.name}
             onBlur={(e) => onUpdate(project.id, { name: e.target.value })}
@@ -49,6 +51,8 @@ export default function ProjectCard({ project, onUpdate, onDelete }) {
             Mission Scope
           </label>
           <textarea
+            id={`project-desc-${project.id}`}
+            name="projectDesc"
             className="input-field h-24 resize-none text-[11px] leading-relaxed font-medium"
             defaultValue={project.desc}
             onBlur={(e) => onUpdate(project.id, { desc: e.target.value })}
@@ -66,6 +70,8 @@ export default function ProjectCard({ project, onUpdate, onDelete }) {
                 className="absolute top-1/2 left-4 -translate-y-1/2 text-white/20"
               />
               <input
+                id={`project-live-${project.id}`}
+                name="liveUrl"
                 className="input-field h-10 pl-10 text-[10px]"
                 defaultValue={project.liveUrl}
                 onBlur={(e) => onUpdate(project.id, { liveUrl: e.target.value })}
@@ -83,6 +89,8 @@ export default function ProjectCard({ project, onUpdate, onDelete }) {
                 className="absolute top-1/2 left-4 -translate-y-1/2 text-white/20"
               />
               <input
+                id={`project-github-${project.id}`}
+                name="githubUrl"
                 className="input-field h-10 pl-10 text-[10px]"
                 defaultValue={project.githubUrl}
                 onBlur={(e) => onUpdate(project.id, { githubUrl: e.target.value })}
