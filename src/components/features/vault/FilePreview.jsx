@@ -27,10 +27,12 @@ export default function FilePreview({ file }) {
       }
       try {
         const res = await fetch(file.content);
+        if (!res.ok) throw new Error('Failed to fetch file content');
         const decompressedStream = res.body.pipeThrough(new DecompressionStream('gzip'));
         const decompressedBlob = await new Response(decompressedStream).blob();
         if (active) {
-          const url = URL.createObjectURL(decompressedBlob);
+          const typedBlob = new Blob([decompressedBlob], { type: file.type });
+          const url = URL.createObjectURL(typedBlob);
           urlToRevoke = url;
           setContentUrl(url);
           setLoading(false);

@@ -63,9 +63,11 @@ export default function SecureVault() {
     if (file.compressed) {
       try {
         const res = await fetch(file.content);
+        if (!res.ok) throw new Error('Failed to fetch file content');
         const decompressedStream = res.body.pipeThrough(new DecompressionStream('gzip'));
         const decompressedBlob = await new Response(decompressedStream).blob();
-        href = URL.createObjectURL(decompressedBlob);
+        const typedBlob = new Blob([decompressedBlob], { type: file.type });
+        href = URL.createObjectURL(typedBlob);
       } catch (err) {
         console.error('Decompression error:', err);
       }
