@@ -416,7 +416,7 @@ graph TD
     C -->|Pass| D[Convert to Base64 Data URL]
     C -->|Fail| E[Show Error Toast]
     D --> F[Store in Firestore as base64 + compressed: true]
-    
+
     F --> G[Download/Preview File]
     G --> H[fetch base64 and pipeThrough DecompressionStream]
     H --> I[Generate Local blob: URL]

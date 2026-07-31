@@ -160,7 +160,7 @@ export default function PrepHub() {
         </div>
 
         <section className="space-y-8">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between px-2">
+          <div className="flex flex-col gap-4 px-2 sm:flex-row sm:items-center sm:justify-between">
             <div className="space-y-1">
               <h2 className="font-outfit text-2xl font-black tracking-tighter text-white">
                 Behavioral Intel (STAR)
@@ -173,7 +173,7 @@ export default function PrepHub() {
               onClick={() =>
                 addStar({ title: 'New Event', situation: '', task_: '', action: '', result: '' })
               }
-              className="btn-primary flex h-12 items-center justify-center gap-3 px-6 shadow-xl transition-all active:scale-95 w-full sm:w-auto"
+              className="btn-primary flex h-12 w-full items-center justify-center gap-3 px-6 shadow-xl transition-all active:scale-95 sm:w-auto"
             >
               <Plus size={18} />
               <span className="text-[10px] font-black tracking-widest uppercase">

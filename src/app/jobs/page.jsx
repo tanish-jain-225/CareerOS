@@ -106,10 +106,10 @@ export default function PipelinePage() {
                 className="w-full rounded-2xl border border-white/5 bg-white/[0.02] py-3 pr-5 pl-11 text-xs font-bold text-white transition-all placeholder:text-white/20 focus:ring-4 focus:ring-emerald-500/5 focus:outline-none"
               />
             </div>
-            <div className="flex w-full sm:w-28 rounded-2xl border border-white/5 bg-white/[0.02] p-1">
+            <div className="flex w-full rounded-2xl border border-white/5 bg-white/[0.02] p-1 sm:w-28">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`flex-1 flex h-12 items-center justify-center rounded-xl transition-all ${
+                className={`flex h-12 flex-1 items-center justify-center rounded-xl transition-all ${
                   viewMode === 'grid'
                     ? 'shadow-indigo bg-indigo-500 text-white'
                     : 'text-white/30 hover:text-white/60'
@@ -121,7 +121,7 @@ export default function PipelinePage() {
               </button>
               <button
                 onClick={() => setViewMode('kanban')}
-                className={`flex-1 flex h-12 items-center justify-center rounded-xl transition-all ${
+                className={`flex h-12 flex-1 items-center justify-center rounded-xl transition-all ${
                   viewMode === 'kanban'
                     ? 'shadow-indigo bg-indigo-500 text-white'
                     : 'text-white/30 hover:text-white/60'
@@ -157,7 +157,7 @@ export default function PipelinePage() {
                 a.download = `careeros_jobs_${new Date().toISOString().split('T')[0]}.csv`;
                 a.click();
               }}
-              className="btn-secondary flex h-14 items-center justify-center gap-3 px-6 w-full sm:w-auto"
+              className="btn-secondary flex h-14 w-full items-center justify-center gap-3 px-6 sm:w-auto"
             >
               <FileDown size={16} />
               <span className="text-[10px] font-black tracking-widest uppercase">Export</span>
@@ -181,7 +181,7 @@ export default function PipelinePage() {
                   { title: 'Acquire New Target', size: 'lg' }
                 )
               }
-              className="btn-primary flex h-14 items-center justify-center gap-3 px-8 shadow-2xl transition-all active:scale-95 w-full sm:w-auto"
+              className="btn-primary flex h-14 w-full items-center justify-center gap-3 px-8 shadow-2xl transition-all active:scale-95 sm:w-auto"
               data-testid="jobs-new-target"
             >
               <Plus size={18} />

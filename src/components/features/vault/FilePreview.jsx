@@ -77,7 +77,7 @@ export default function FilePreview({ file }) {
         <div className="flex h-[40vh] items-center justify-center rounded-2xl border border-white/5 bg-white/[0.01]">
           <div className="flex flex-col items-center gap-4">
             <LogoLoader size="sm" />
-            <span className="text-[8px] font-black tracking-[0.3em] text-white/20 uppercase animate-pulse">
+            <span className="animate-pulse text-[8px] font-black tracking-[0.3em] text-white/20 uppercase">
               Decompressing Asset...
             </span>
           </div>

@@ -149,7 +149,9 @@ export default function SecureVault() {
         const compressedBlob = await new Response(compressedStream).blob();
 
         if (compressedBlob.size > MAX_SIZE_BYTES) {
-          toast.error(`${file.name}: Compressed size (${formatBytes(compressedBlob.size)}) exceeds the 700KB database limit.`);
+          toast.error(
+            `${file.name}: Compressed size (${formatBytes(compressedBlob.size)}) exceeds the 700KB database limit.`
+          );
           return;
         }
 
@@ -354,14 +356,14 @@ export default function SecureVault() {
             ))}
           </div>
 
-          <div className="flex flex-col gap-4 w-full sm:flex-row sm:items-center sm:w-auto">
+          <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row sm:items-center">
             <AnimatePresence>
               {selectedFiles.length > 0 && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.98 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.98 }}
-                  className="flex flex-wrap items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.02] p-1.5 w-full"
+                  className="flex w-full flex-wrap items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.02] p-1.5"
                 >
                   <span className="px-4 text-[9px] font-black text-white/40 uppercase">
                     {selectedFiles.length} Selected
@@ -390,7 +392,7 @@ export default function SecureVault() {
 
             <button
               onClick={toggleSelectAll}
-              className={`rounded-2xl border px-5 py-3 text-[9px] font-black tracking-widest uppercase transition-all w-full sm:w-auto text-center ${
+              className={`w-full rounded-2xl border px-5 py-3 text-center text-[9px] font-black tracking-widest uppercase transition-all sm:w-auto ${
                 selectedFiles.length === filteredFiles.length && filteredFiles.length > 0
                   ? 'border-indigo-500 bg-indigo-500 text-white'
                   : 'border-white/5 bg-white/[0.01] text-white/20 hover:border-white/10 hover:text-white/40'
@@ -410,7 +412,7 @@ export default function SecureVault() {
                 <button
                   key={opt.id}
                   onClick={() => setSortBy(opt.id)}
-                  className={`flex-1 rounded-xl px-5 py-2.5 text-[9px] font-black tracking-widest uppercase transition-all text-center ${
+                  className={`flex-1 rounded-xl px-5 py-2.5 text-center text-[9px] font-black tracking-widest uppercase transition-all ${
                     sortBy === opt.id
                       ? 'bg-white/5 text-white shadow-sm'
                       : 'text-white/15 hover:text-white/30'

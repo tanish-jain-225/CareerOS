@@ -173,17 +173,17 @@ export default function CommunicationHub() {
             </p>
           </div>
 
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:flex-wrap">
+          <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
             <button
               onClick={handleExportCSV}
-              className="btn-secondary flex h-14 items-center justify-center gap-3 px-6 w-full sm:w-auto"
+              className="btn-secondary flex h-14 w-full items-center justify-center gap-3 px-6 sm:w-auto"
             >
               <FileDown size={16} />
               <span className="text-[10px] font-black tracking-widest uppercase">Export CSV</span>
             </button>
             <button
               onClick={() => handleOpenContactModal()}
-              className="btn-primary flex h-14 items-center justify-center gap-3 px-8 shadow-2xl transition-all active:scale-95 w-full sm:w-auto"
+              className="btn-primary flex h-14 w-full items-center justify-center gap-3 px-8 shadow-2xl transition-all active:scale-95 sm:w-auto"
               data-testid="comms-new-contact"
             >
               <Plus size={18} />
@@ -192,7 +192,7 @@ export default function CommunicationHub() {
             {selectedTargets.length > 0 && (
               <button
                 onClick={handleBatchPurge}
-                className="flex items-center justify-center gap-3 rounded-2xl border border-rose-500/20 bg-rose-500/10 px-6 py-3.5 text-[10px] font-black tracking-widest text-rose-500 uppercase transition-all hover:bg-rose-500/20 active:scale-95 w-full sm:w-auto"
+                className="flex w-full items-center justify-center gap-3 rounded-2xl border border-rose-500/20 bg-rose-500/10 px-6 py-3.5 text-[10px] font-black tracking-widest text-rose-500 uppercase transition-all hover:bg-rose-500/20 active:scale-95 sm:w-auto"
               >
                 <Trash2 size={16} /> Batch Purge
               </button>

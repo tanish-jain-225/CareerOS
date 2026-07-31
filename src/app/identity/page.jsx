@@ -133,7 +133,7 @@ export default function IdentityModule() {
               <input
                 id="profile-name"
                 name="name"
-                className="font-outfit w-full bg-transparent text-center text-3xl sm:text-4xl md:text-5xl font-black tracking-tighter text-white transition-all outline-none focus:text-indigo-400 md:text-left"
+                className="font-outfit w-full bg-transparent text-center text-3xl font-black tracking-tighter text-white transition-all outline-none focus:text-indigo-400 sm:text-4xl md:text-left md:text-5xl"
                 value={currentForm.name || ''}
                 onChange={(e) => updateForm({ name: e.target.value })}
                 placeholder="OPERATOR NAME"
@@ -373,7 +373,7 @@ export default function IdentityModule() {
               <button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="group relative flex w-full sm:w-auto items-center justify-center gap-4 overflow-hidden rounded-[24px] bg-indigo-500 px-8 py-5 text-[11px] font-black tracking-[0.2em] text-white uppercase shadow-[0_20px_50px_rgba(99,102,241,0.3)] transition-all hover:shadow-[0_20px_50px_rgba(99,102,241,0.5)] active:scale-95"
+                className="group relative flex w-full items-center justify-center gap-4 overflow-hidden rounded-[24px] bg-indigo-500 px-8 py-5 text-[11px] font-black tracking-[0.2em] text-white uppercase shadow-[0_20px_50px_rgba(99,102,241,0.3)] transition-all hover:shadow-[0_20px_50px_rgba(99,102,241,0.5)] active:scale-95 sm:w-auto"
               >
                 <div className="group-hover:animate-shimmer absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
                 {isSaving ? (
